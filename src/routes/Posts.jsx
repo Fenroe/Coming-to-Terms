@@ -2,9 +2,7 @@ import React from 'react'
 
 const Posts = () => {
   return (
-    <main>
-      <h1>Hello from Posts</h1>
-    </main>
+    <h1>Hello from Posts</h1>
   )
 }
 
