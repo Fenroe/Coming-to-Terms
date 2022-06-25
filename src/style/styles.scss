@@ -1,0 +1,23 @@
+//
+// Styles
+//
+
+// Import variables
+@import './variables';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// Global CSS
+@import './global';
+
+// Components
+@import './components/buttons';
+@import './components/forms';
+@import './components/navbar';
+
+// Sections
+@import './sections/footer';
+@import './sections/masthead';
+@import './sections/header-alt';
+@import './sections/post';

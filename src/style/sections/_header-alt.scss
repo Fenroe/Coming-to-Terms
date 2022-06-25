@@ -1,0 +1,31 @@
+.header-alt {
+  position: relative;
+  height: 5rem;
+  margin-bottom: 3rem;
+
+  background: no-repeat center center;
+  background-color: transparent;
+  background-size: cover;
+  background-attachment: scroll;
+
+  &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: transparent;
+      opacity: $overlay-opacity;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .header-alt {
+    background-color: $gray-600;
+
+    &:before {
+      background-color: $overlay-background;
+    }
+  }
+}
