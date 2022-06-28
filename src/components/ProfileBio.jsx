@@ -1,14 +1,14 @@
 import React from 'react'
 import { Col } from './index'
 
-const ProfileAbout = () => {
+const ProfileBio = () => {
   return (
     <>
       <Col className="md-10" lg={8} xl={7}>
-        <h1>Hello from ProfileAbout</h1>
+        <h1>Hell o from ProfileBio</h1>
       </Col>
     </>
   )
 }
 
-export default ProfileAbout
+export default ProfileBio

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { HeaderAlt, Container, Row, Col, Nav, ProfileActivity, ProfilePosts, ProfileAbout } from '../components'
+import { HeaderAlt, Container, Row, Col, Nav, ProfileActivity, ProfilePosts, ProfileBio } from '../components'
 
 const Profile = () => {
   const [showing, setShowing] = useState('activity')
@@ -20,8 +20,8 @@ const Profile = () => {
     if (showing === 'posts') {
       return <ProfilePosts />
     }
-    if (showing === 'about') {
-      return <ProfileAbout />
+    if (showing === 'bio') {
+      return <ProfileBio />
     }
   }
   useEffect(() => {
@@ -42,7 +42,7 @@ const Profile = () => {
           <Nav className="nav-tabs justify-content-center">
             <Nav.Link className={setActive('activity')} onClick={() => setShowing('activity')}>Activity</Nav.Link>
             <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link>
-            <Nav.Link className={setActive('about')} onClick={() => setShowing('about')}>About</Nav.Link>
+            <Nav.Link className={setActive('bio')} onClick={() => setShowing('bio')}>Bio</Nav.Link>
           </Nav>
         </Col>
       </Row>

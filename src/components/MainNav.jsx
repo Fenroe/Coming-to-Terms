@@ -1,7 +1,10 @@
 import React from 'react'
 import { Navbar, Container, Nav } from './index'
+import { useAuth } from '../hooks'
 
 const MainNav = () => {
+  const { auth } = useAuth()
+
   return (
     <Navbar expand="lg" variant="light" id="mainNav" aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation'>
       <Container className="px-4 px-lg-5">
@@ -18,12 +21,27 @@ const MainNav = () => {
             <Nav.Item as="li">
               <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/posts/archive">Archive</Nav.Link>
             </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/login">Log in</Nav.Link>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/signup">Sign up</Nav.Link>
-            </Nav.Item>
+            { auth
+              ? (
+              <>
+                <Nav.Item as="li">
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/profile/fenroe">Profile</Nav.Link>
+                </Nav.Item>
+                <Nav.Item as="li">
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/signup">Log out</Nav.Link>
+                </Nav.Item>
+              </>
+                )
+              : (
+              <>
+                <Nav.Item as="li">
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/login">Log in</Nav.Link>
+                </Nav.Item>
+                <Nav.Item as="li">
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/signup">Sign up</Nav.Link>
+                </Nav.Item>
+              </>
+                )}
           </Nav>
         </Navbar.Collapse>
       </Container>
