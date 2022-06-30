@@ -10,10 +10,13 @@ $ : end of string
 
 const validateUsername = (username, cb) => {
   let result = true
-  if (!username) return false
-  if (username.length < 3) result = false
-  if (username.length > 20) result = false
-  if (!usernameRegex.test(username)) result = false
+  if (!username) {
+    result = false
+  } else {
+    if (username.length < 3) result = false
+    if (username.length > 20) result = false
+    if (!usernameRegex.test(username)) result = false
+  }
   if (!cb) return result
   cb(result)
 }

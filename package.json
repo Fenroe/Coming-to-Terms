@@ -49,5 +49,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
     "jest": "^28.1.1"
+  },
+  "overrides": {
+    "autoprefixer": "10.4.5"
   }
 }

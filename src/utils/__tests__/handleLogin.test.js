@@ -4,14 +4,16 @@ import { handleLogin } from '../index'
 jest.mock('axios')
 
 describe('returns token on successful request', () => {
+  const successfulResponse = {
+    status: 200,
+    data: {
+      loginWasSuccessful: true,
+      token: 'token123'
+    }
+  }
+
   beforeEach(() => {
-    axios.post.mockResolvedValue({
-      status: 200,
-      data: {
-        loginWasSuccessful: true,
-        token: 'token123'
-      }
-    })
+    axios.post.mockResolvedValue(successfulResponse)
   })
 
   afterEach(() => {
@@ -23,6 +25,6 @@ describe('returns token on successful request', () => {
   })
 
   test('function returns token when resolved', () => {
-    expect(handleLogin('username', 'password')).resolves.toBe('token123')
+    expect(handleLogin('username', 'password')).resolves.toBe(successfulResponse)
   })
 })

@@ -1,14 +1,35 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Col } from './index'
+import { useAuth } from '../hooks'
 
-const ProfileBio = () => {
+const ProfileBio = ({ bio, username }) => {
+  const { auth } = useAuth()
+
+  const returnCorrectMessage = () => {
+    if (username === auth.username) {
+      return (
+        <p>You haven&apos;t written a bio yet. Do you want to <a href={`/profile/edit/${username}`}>Update your profile?</a></p>
+      )
+    } else {
+      return (
+        <p>This user hasn&apos;t written a bio yet.</p>
+      )
+    }
+  }
+
   return (
     <>
       <Col className="md-10" lg={8} xl={7}>
-        <h1>Hell o from ProfileBio</h1>
+        {bio ? <p>{bio}</p> : returnCorrectMessage()}
       </Col>
     </>
   )
+}
+
+ProfileBio.propTypes = {
+  bio: PropTypes.string,
+  username: PropTypes.string
 }
 
 export default ProfileBio

@@ -21,14 +21,14 @@ const MainNav = () => {
             <Nav.Item as="li">
               <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/posts/archive">Archive</Nav.Link>
             </Nav.Item>
-            { auth
+            { auth.token
               ? (
               <>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/profile/fenroe">Profile</Nav.Link>
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href={`/profile/${auth.username}`}>Profile</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/signup">Log out</Nav.Link>
+                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Log out</Nav.Link>
                 </Nav.Item>
               </>
                 )

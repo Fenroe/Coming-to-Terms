@@ -3,7 +3,7 @@ import { AuthContext } from './index'
 import PropTypes from 'prop-types'
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState()
+  const [auth, setAuth] = useState({})
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

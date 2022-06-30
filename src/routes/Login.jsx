@@ -5,6 +5,8 @@ import { handleLogin } from '../utils'
 import { useAuth } from '../hooks'
 
 const Login = () => {
+  const [loading, setLoading] = useState(false)
+
   const [errorMessage, setErrorMessage] = useState('')
 
   const { setAuth } = useAuth()
@@ -17,8 +19,15 @@ const Login = () => {
 
   const handleSubmit = async () => {
     try {
-      const token = await handleLogin(usernameRef.current.value, passwordRef.current.value)
-      setAuth(token)
+      if (loading) return
+      setLoading(true)
+      const loginResponse = await handleLogin(usernameRef.current.value, passwordRef.current.value)
+      localStorage.setItem('token', loginResponse.data.token)
+      localStorage.setItem('username', loginResponse.data.username)
+      setAuth({
+        token: loginResponse.data.token,
+        username: loginResponse.data.username
+      })
       navigate('/')
     } catch (err) {
       if (err.name === 'AxiosError') {
@@ -30,6 +39,8 @@ const Login = () => {
         }
       }
       console.clear()
+    } finally {
+      setLoading(false)
     }
   }
 

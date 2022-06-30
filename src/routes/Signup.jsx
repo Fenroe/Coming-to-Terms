@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks'
-import { validateUsername, validateEmail, validatePassword, comparePasswords, validateSignup, handleSignup, handleLogin } from '../utils'
+import { validateUsername, validateEmail, validatePassword, comparePasswords, handleSignup, handleLogin } from '../utils'
 import { Container, Row, Col, Form, HeaderAlt, Button } from '../components'
 
 const Signup = () => {
@@ -27,15 +27,79 @@ const Signup = () => {
 
   const navigate = useNavigate()
 
+  const validateSignup = () => {
+    let isValid = true
+    validateUsername(usernameRef.current.value, (result) => {
+      if (result === false) {
+        isValid = false
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          username: 'Username must be between 4 and 20 characters and can only have letters, numbers and underscores'
+        }))
+      } else {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          username: ''
+        }))
+      }
+    })
+    validateEmail(emailRef.current.value, (result) => {
+      if (result === false) {
+        isValid = false
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          email: 'Please use a valid email address'
+        }))
+      } else {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          email: ''
+        }))
+      }
+    })
+    validatePassword(passwordRef.current.value, (result) => {
+      if (result === false) {
+        isValid = false
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          password: 'Password must be at least six characters long'
+        }))
+      } else {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          password: ''
+        }))
+      }
+    })
+    comparePasswords(passwordRef.current.value, confirmPasswordRef.current.value, (result) => {
+      if (result === false) {
+        isValid = false
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          confirmPassword: 'Passwords don\'t match'
+        }))
+      } else {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          confirmPassword: ''
+        }))
+      }
+    })
+    return isValid
+  }
+
   const handleSubmit = async () => {
     try {
       if (loading) return
-      if (!validateSignup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, confirmPasswordRef.current.value)) return
+      if (!validateSignup()) return
       setLoading(true)
       const response = await handleSignup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
       if (response.data.userWasCreated === true) {
-        const token = await handleLogin(usernameRef.current.value, passwordRef.current.value)
-        setAuth(token)
+        const loginResponse = await handleLogin(usernameRef.current.value, passwordRef.current.value)
+        setAuth({
+          token: loginResponse.data.token,
+          username: loginResponse.data.username
+        })
         navigate('/')
       }
     } catch (err) {

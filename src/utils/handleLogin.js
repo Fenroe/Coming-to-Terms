@@ -7,8 +7,7 @@ const handleLogin = async (username, password) => {
     username,
     password
   })
-  if (!response.data.loginWasSuccessful) throw new Error(response.data.message)
-  return response.data.token
+  return response
 }
 
 export default handleLogin
