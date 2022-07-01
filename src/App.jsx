@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Home, About, Archive, EditPost, DeletePost, Login, Signup, Profile, Logout } from './routes'
+import { Home, About, Archive, EditPost, DeletePost, Login, Signup, Profile, Logout, NewPost, EditProfile, Preview } from './routes'
 import { MainNav } from './components'
 import { useAuth } from './hooks'
 
@@ -10,7 +10,8 @@ export const App = () => {
   useEffect(() => {
     setAuth({
       token: localStorage.getItem('token'),
-      username: localStorage.getItem('username')
+      username: localStorage.getItem('username'),
+      isContributor: localStorage.getItem('isContributor')
     })
   }, [])
 
@@ -28,6 +29,9 @@ export const App = () => {
           <Route exact path="/signup" element={ <Signup /> } />
           <Route exact path="/profile/:id" element={ <Profile /> } />
           <Route exact path="/logout" element={ <Logout /> } />
+          <Route exact path="/editprofile" element={ <EditProfile /> } />
+          <Route exact path="/newpost" element={ <NewPost /> } />
+          <Route exact path="/preview/:id" element={ <Preview /> } />
         </Routes>
       </Router>
     </>

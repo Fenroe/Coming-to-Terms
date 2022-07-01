@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { HeaderAlt, Container, Row, Col, Nav, ProfilePosts, ProfileBio } from '../components'
+import { HeaderAlt, Container, Row, Col, Nav, ProfilePosts, ProfileBio, ThreeDots, Dropdown } from '../components'
 import { getUser } from '../utils'
 import { useAuth } from '../hooks'
 
@@ -42,7 +42,8 @@ const Profile = () => {
       console.log(response)
       setProfileInfo({
         username: response.data.userData.username,
-        bio: response.data.userData.bio
+        bio: response.data.userData.bio,
+        isContributor: response.data.userData.isContributor
       })
       setPublishedPosts(response.data.posts.published)
       if (id === auth.username) {
@@ -62,15 +63,30 @@ const Profile = () => {
     <HeaderAlt />
     <Container className="px-4 px-lg-5">
       <Row className="gx-4 gx-lg-5 justify-content-center">
-        <Col className="md-10 text-center" lg={8} xl={7}>
-          <h1>{profileInfo.username}</h1>
+        <Col className="md-10 justify-content-between" lg={8} xl={7}>
+          <div className="profile-heading">
+            <h1>{profileInfo.username}</h1>
+            {profileInfo.username === auth.username
+              ? (
+              <Dropdown>
+                <Dropdown.Toggle variant="light" style={{ backgroundColor: 'transparent', border: 'none' }}>
+                  <ThreeDots className="profile-heading-three-dots"/>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Edit profile</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Delete account</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+                )
+              : null}
+          </div>
         </Col>
       </Row>
       <Row className="gx-4 gx-lg-5 justify-content-center">
         <Col className="md-10" lg={8} xl={7}>
           <Nav className="nav-tabs justify-content-center">
             <Nav.Link className={setActive('bio')} onClick={() => setShowing('bio')}>Bio</Nav.Link>
-            <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link>
+            {profileInfo.isContributor ? <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link> : null}
           </Nav>
         </Col>
       </Row>

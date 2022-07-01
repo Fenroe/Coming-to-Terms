@@ -1,0 +1,19 @@
+.profile-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-heading-three-dots {
+  font-size: 2rem;
+  color: black;
+}
+
+.profile-heading-button {
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}

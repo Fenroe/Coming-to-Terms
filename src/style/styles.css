@@ -11718,7 +11718,14 @@ blockquote {
   text-transform: uppercase;
 }
 
-#mainNav .navbar-nav > li.nav-item > a.nav-link {
+#mainNav .navbar-nav > li.nav-item > a {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.0625em;
+  text-transform: uppercase;
+}
+
+#mainNav .nav-dropdown > a {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.0625em;
@@ -11736,10 +11743,10 @@ blockquote {
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
     color: rgba(255, 255, 255, 0.8);
   }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link {
+  #mainNav .navbar-nav > li.nav-item > a {
     color: #fff;
   }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
+  #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
     color: rgba(255, 255, 255, 0.8);
   }
 }
@@ -11964,5 +11971,31 @@ header.masthead .post-heading .meta a {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+
+.profile-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-heading-three-dots {
+  font-size: 2rem;
+  color: black;
+}
+
+.profile-heading-button {
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 /*# sourceMappingURL=styles.css.map */

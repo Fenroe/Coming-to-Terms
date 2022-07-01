@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const PostCard = ({ id, title, subtitle, author, datePublished }) => {
+const ArchivePostCard = ({ id, title, subtitle, author, datePublished }) => {
   return (
     <div className="post-preview">
       <a href={`/posts/${id}`}>
@@ -14,7 +14,7 @@ const PostCard = ({ id, title, subtitle, author, datePublished }) => {
   )
 }
 
-PostCard.propTypes = {
+ArchivePostCard.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
@@ -22,4 +22,4 @@ PostCard.propTypes = {
   datePublished: PropTypes.string
 }
 
-export default PostCard
+export default ArchivePostCard

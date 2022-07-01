@@ -1,24 +1,28 @@
 import React from 'react'
-import { Form, HeaderAlt, Row, Col } from '../components'
+import { Form, HeaderAlt, Container, Row, Col, Button } from '../components'
 
 const EditProfile = () => {
   return (
     <>
       <HeaderAlt />
       <main className="mb-4">
-        <Row className="gx-4 gx-lg-5 justify-content-center">
-          <Col className="md-10" lg={8} xl={7}>
-            <h1 className="text-center">Edit Profile</h1>
-            <div className="my-5">
-              <Form>
-                <Form.Floating>
-                  <Form.Control />
-                  <Form.Label>Bio</Form.Label>
-                </Form.Floating>
-              </Form>
-            </div>
-          </Col>
-        </Row>
+        <Container className="px-4 px-lg-5">
+          <Row className="gx-4 gx-lg-5 justify-content-center">
+            <Col className="md-10" lg={8} xl={7}>
+              <h1 className="text-center">Edit Profile</h1>
+              <div className="my-5">
+                <Form>
+                  <Form.Floating>
+                    <Form.Control type="text" name="bio" id="bio" placeholder="Bio" />
+                    <Form.Label htmlFor="bio">Bio</Form.Label>
+                  </Form.Floating>
+                  <br />
+                  <Button type="button">Save</Button>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </main>
     </>
   )

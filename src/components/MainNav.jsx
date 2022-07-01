@@ -30,6 +30,13 @@ const MainNav = () => {
                 <Nav.Item as="li">
                   <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/logout">Log out</Nav.Link>
                 </Nav.Item>
+                {auth.isContributor
+                  ? (
+                  <Nav.Item as="li">
+                    <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/newpost">New Post</Nav.Link>
+                  </Nav.Item>
+                    )
+                  : null}
               </>
                 )
               : (

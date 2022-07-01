@@ -27,13 +27,22 @@
 
   .navbar-nav {
       >li.nav-item {
-          >a.nav-link {
+          >a {
               font-size: 0.75rem;
               font-weight: $headings-font-weight;
               letter-spacing: 0.0625em;
               text-transform: uppercase;
           }
       }
+  }
+
+  .nav-dropdown {
+    >a {
+        font-size: 0.75rem;
+        font-weight: $headings-font-weight;
+        letter-spacing: 0.0625em;
+        text-transform: uppercase;
+    }
   }
 
   // Desktop only styling for the navbar
@@ -54,7 +63,7 @@
 
       .navbar-nav {
           >li.nav-item {
-              >a.nav-link {
+              >a {
                   color: $white;
 
                   &:focus,
