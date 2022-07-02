@@ -11673,9 +11673,6 @@ blockquote {
 
 .btn {
   letter-spacing: 0.0625em;
-}
-
-.btn {
   width: 10rem;
 }
 
@@ -11690,6 +11687,11 @@ blockquote {
 .form-floating textarea:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.form-floating textarea {
+  resize: none;
+  height: 10rem !important;
 }
 
 .form-floating label {

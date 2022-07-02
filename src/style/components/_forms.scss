@@ -16,6 +16,11 @@
 
   }
 
+  textarea {
+    resize: none;
+    height: 10rem !important;
+  }
+
   label {
       color: $gray-600;
   }

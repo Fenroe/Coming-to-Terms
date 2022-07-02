@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { HeaderAlt, Container, Row, Col, Button } from '../components'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getPost } from '../utils'
+import { getPost, publishPost } from '../utils'
+import { useAuth } from '../hooks'
 
 const Preview = () => {
   const [postData, setPostData] = useState({})
+
   const { id } = useParams()
 
   const navigate = useNavigate()
 
-  const handlePublish = () => {
-    console.log('published')
+  const { auth } = useAuth()
+
+  const handlePublish = async () => {
+    await publishPost(id, auth.username, auth.token)
+    navigate(`/posts/${id}`)
   }
 
   useEffect(() => {

@@ -46,9 +46,7 @@ const Profile = () => {
         isContributor: response.data.userData.isContributor
       })
       setPublishedPosts(response.data.posts.published)
-      if (id === auth.username) {
-        setDrafts(response.data.posts.drafts)
-      }
+      setDrafts(response.data.posts.drafts)
     }
 
     if (id) {
@@ -66,10 +64,10 @@ const Profile = () => {
         <Col className="md-10 justify-content-between" lg={8} xl={7}>
           <div className="profile-heading">
             <h1>{profileInfo.username}</h1>
-            {profileInfo.username === auth.username
-              ? (
+            {profileInfo.username === auth.username &&
+              (
               <Dropdown>
-                <Dropdown.Toggle variant="light" style={{ backgroundColor: 'transparent', border: 'none' }}>
+                <Dropdown.Toggle style={{ backgroundColor: 'transparent', border: 'none' }}>
                   <ThreeDots className="profile-heading-three-dots"/>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -77,8 +75,7 @@ const Profile = () => {
                   <Dropdown.Item href="#/action-2">Delete account</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-                )
-              : null}
+              )}
           </div>
         </Col>
       </Row>
@@ -86,7 +83,7 @@ const Profile = () => {
         <Col className="md-10" lg={8} xl={7}>
           <Nav className="nav-tabs justify-content-center">
             <Nav.Link className={setActive('bio')} onClick={() => setShowing('bio')}>Bio</Nav.Link>
-            {profileInfo.isContributor ? <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link> : null}
+            {profileInfo.isContributor && <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link>}
           </Nav>
         </Col>
       </Row>

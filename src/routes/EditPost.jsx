@@ -65,7 +65,7 @@ const EditPost = () => {
                   }}
                   className="form-control"
                   apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
-                  value={postData.content}
+                  initialValue={postData.content}
                   init={{
                     selector: 'textarea',
                     menubar: false,

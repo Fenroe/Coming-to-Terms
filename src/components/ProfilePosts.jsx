@@ -1,23 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Col } from './index'
-// import { useAuth } from '../hooks'
+import { Col, ProfileDrafts } from './index'
+import { useAuth } from '../hooks'
 
 const ProfilePosts = ({ publishedPosts, drafts, username }) => {
-  // const { auth } = useAuth()
+  const { auth } = useAuth()
 
   return (
     <>
       <Col className="md-10" lg={8} xl={7}>
         <h1>Published</h1>
-        {publishedPosts.length === 0 ? <p>No published posts</p> : null}
+        {publishedPosts.length === 0 && <p>No published posts</p>}
         {publishedPosts.map((post) =>
-          <p key={post._id}>{post.title}</p>
+        <div key={post._id}>
+          <a href={`/posts/${post._id}`}>{post.title}</a>
+        </div>
         )}
-        <h1>Drafts</h1>
-        {drafts.length === 0 ? <p>No drafts</p> : null}
-        {drafts.map((post) =>
-        <p key={post._id}>{post.title}</p>)}
+        {auth.username === username && (
+          <ProfileDrafts drafts={drafts} />
+        )}
       </Col>
     </>
   )
