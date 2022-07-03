@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { HeaderAlt, Container, Row, Col, ArchiveMonthContainer } from '../components'
+import { MainNav, HeaderAlt, Container, Row, Col, ArchiveMonthContainer } from '../components'
 import { organiseArchive, getAllPosts } from '../utils'
 
 const Archive = () => {
@@ -13,6 +13,7 @@ const Archive = () => {
 
   return (
       <>
+        <MainNav />
         <HeaderAlt />
           <Container className="px-4 px-lg-5">
           <Row className="gx-4 gx-lg-5 justify-content-center">

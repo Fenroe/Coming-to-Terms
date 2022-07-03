@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks'
 import { validateUsername, validateEmail, validatePassword, comparePasswords, handleSignup, handleLogin } from '../utils'
-import { Container, Row, Col, Form, HeaderAlt, Button } from '../components'
+import { Container, Row, Col, Form, HeaderAlt, Button, MainNav } from '../components'
 
 const Signup = () => {
   const [loading, setLoading] = useState(false)
@@ -128,6 +128,7 @@ const Signup = () => {
   }
   return (
     <>
+      <MainNav />
       <HeaderAlt />
       <main className="mb-4">
         <Container className="px-4 px-lg-5">

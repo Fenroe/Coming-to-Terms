@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { HeaderAlt, Container, Row, Col, Button } from '../components'
+import { HeaderAlt, Container, Row, Col, Button, MainNav } from '../components'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getPost, publishPost } from '../utils'
 import { useAuth } from '../hooks'
@@ -29,6 +29,7 @@ const Preview = () => {
   }, [])
   return (
     <>
+      <MainNav />
       <HeaderAlt />
       <main>
         <Container className="px-4 px-lg-5">

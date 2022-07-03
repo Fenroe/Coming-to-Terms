@@ -26,23 +26,35 @@
   }
 
   .navbar-nav {
-      >li.nav-item {
-          >a {
+      >li.nav-btn-container {
+        display: flex;
+        align-items: center;
+        >button {
+            width: 8rem;
+        }
+      }
+
+      >li.nav-item, .dropdown {
+          >a, li>a, button {
               font-size: 0.75rem;
               font-weight: $headings-font-weight;
               letter-spacing: 0.0625em;
               text-transform: uppercase;
           }
       }
-  }
-
-  .nav-dropdown {
-    >a {
-        font-size: 0.75rem;
-        font-weight: $headings-font-weight;
-        letter-spacing: 0.0625em;
-        text-transform: uppercase;
-    }
+      >.dropdown {
+        >.dropdown-menu {
+            padding-left: 1rem;
+            >li.nav-item {
+                >a {
+                    font-size: 0.75rem;
+                    font-weight: $headings-font-weight;
+                    letter-spacing: 0.0625em;
+                    text-transform: uppercase; 
+                }
+            }
+        }
+      }
   }
 
   // Desktop only styling for the navbar
@@ -62,7 +74,7 @@
       }
 
       .navbar-nav {
-          >li.nav-item {
+          >li.nav-item, .dropdown {
               >a {
                   color: $white;
 

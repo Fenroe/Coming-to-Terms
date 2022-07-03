@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HeaderAlt, Container, Row, Col, Form, Button } from '../components'
+import { HeaderAlt, Container, Row, Col, Form, Button, MainNav } from '../components'
 import { useAuth } from '../hooks'
 import { createNewPost } from '../utils'
 
@@ -29,6 +29,7 @@ const NewPost = () => {
 
   return (
     <>
+      <MainNav />
       <HeaderAlt />
       <main className="mb-4">
         <Container className="px-4 px-lg-5">

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HeaderAlt } from '../components'
+import { HeaderAlt, MainNav } from '../components'
 import { useAuth } from '../hooks'
 
 const Logout = () => {
@@ -11,12 +11,14 @@ const Logout = () => {
   useEffect(() => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    localStorage.removeItem('isContributor')
     setAuth({})
-    navigate(-1)
+    navigate(-1, { replace: true })
   }, [])
 
   return (
     <>
+      <MainNav />
       <HeaderAlt />
     </>
   )

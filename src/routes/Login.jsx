@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Row, Col, Form, HeaderAlt, Button } from '../components'
+import { Container, Row, Col, Form, HeaderAlt, Button, MainNav } from '../components'
 import { handleLogin } from '../utils'
 import { useAuth } from '../hooks'
 
@@ -48,6 +48,7 @@ const Login = () => {
 
   return (
     <>
+      <MainNav />
       <HeaderAlt />
       <main className="mb-4">
         <Container className="px-4 px-lg-5">

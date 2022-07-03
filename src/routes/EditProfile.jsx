@@ -1,9 +1,10 @@
 import React from 'react'
-import { Form, HeaderAlt, Container, Row, Col, Button } from '../components'
+import { Form, HeaderAlt, Container, Row, Col, Button, MainNav } from '../components'
 
 const EditProfile = () => {
   return (
     <>
+      <MainNav />
       <HeaderAlt />
       <main className="mb-4">
         <Container className="px-4 px-lg-5">

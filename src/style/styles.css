@@ -11720,14 +11720,31 @@ blockquote {
   text-transform: uppercase;
 }
 
-#mainNav .navbar-nav > li.nav-item > a {
+#mainNav .navbar-nav > li.nav-btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#mainNav .navbar-nav > li.nav-btn-container > button {
+  width: 8rem;
+}
+
+#mainNav .navbar-nav > li.nav-item > a, #mainNav .navbar-nav > li.nav-item li > a, #mainNav .navbar-nav > li.nav-item button, #mainNav .navbar-nav .dropdown > a, #mainNav .navbar-nav .dropdown li > a, #mainNav .navbar-nav .dropdown button {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.0625em;
   text-transform: uppercase;
 }
 
-#mainNav .nav-dropdown > a {
+#mainNav .navbar-nav > .dropdown > .dropdown-menu {
+  padding-left: 1rem;
+}
+
+#mainNav .navbar-nav > .dropdown > .dropdown-menu > li.nav-item > a {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.0625em;
@@ -11745,10 +11762,10 @@ blockquote {
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
     color: rgba(255, 255, 255, 0.8);
   }
-  #mainNav .navbar-nav > li.nav-item > a {
+  #mainNav .navbar-nav > li.nav-item > a, #mainNav .navbar-nav .dropdown > a {
     color: #fff;
   }
-  #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
+  #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav .dropdown > a:focus, #mainNav .navbar-nav .dropdown > a:hover {
     color: rgba(255, 255, 255, 0.8);
   }
 }
@@ -11791,6 +11808,15 @@ blockquote {
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
+}
+
+.comment-author-text {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 800;
+}
+
+.edited-text {
+  font-size: 14px;
 }
 
 footer {

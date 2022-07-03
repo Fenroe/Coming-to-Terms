@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { HeaderAlt, Container, Row, Col, Form, Button, Editor } from '../components'
+import { HeaderAlt, Container, Row, Col, Form, Button, Editor, MainNav } from '../components'
 import { getPost, updatePost } from '../utils'
 import { useAuth } from '../hooks'
 
@@ -40,6 +40,7 @@ const EditPost = () => {
 
   return (
       <>
+        <MainNav />
         <HeaderAlt />
         <main className="mb-4">
         <Container className="px-4 px-lg-5">

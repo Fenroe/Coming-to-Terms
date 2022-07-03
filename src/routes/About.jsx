@@ -1,10 +1,11 @@
 import React from 'react'
-import { Header, Container, Row, Col } from '../components'
+import { MainNav, Header, Container, Row, Col } from '../components'
 import { headerImageAbout } from '../assets'
 
 const About = () => {
   return (
     <>
+      <MainNav />
       <Header backgroundImage={headerImageAbout} heading="About" />
       <main>
         <Container className="px-4 px-lg-5">

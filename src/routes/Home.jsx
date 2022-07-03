@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner } from '../components'
+import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner, MainNav } from '../components'
 import { headerImageHome } from '../assets'
 import { getRecentPosts } from '../utils'
 
@@ -15,6 +15,7 @@ const Home = () => {
   }, [])
   return (
     <>
+      <MainNav />
       <Header backgroundImage={headerImageHome} heading="Coming to Terms" subheading="One day at a time" />
       <Container className="px-4 px-lg-5">
         <Row className="gx-4 gx-lg-5 justify-content-center">
