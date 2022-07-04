@@ -1,17 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { HeaderAlt, Container, Row, Col, Form, Button, Editor, MainNav } from '../components'
 import { getPost, updatePost } from '../utils'
 import { useAuth } from '../hooks'
+import { useQuery } from 'react-query'
 
 const EditPost = () => {
-  const [postData, setPostData] = useState({
-    title: '',
-    author: '',
-    previewText: '',
-    content: ''
-  })
-
   const { id } = useParams()
 
   const { auth } = useAuth()
@@ -24,6 +18,8 @@ const EditPost = () => {
 
   const navigate = useNavigate()
 
+  const { data, status } = useQuery('editPostData', getPost)
+
   const handleSave = async () => {
     await updatePost(id, auth.username, titleRef.current.value, previewTextRef.current.value, editorRef.current.getContent(), auth.token)
   }
@@ -33,11 +29,6 @@ const EditPost = () => {
     navigate(`/preview/${id}`)
   }
 
-  useEffect(() => {
-    getPost(id)
-      .then((result) => setPostData(result))
-  }, [])
-
   return (
       <>
         <MainNav />
@@ -45,18 +36,19 @@ const EditPost = () => {
         <main className="mb-4">
         <Container className="px-4 px-lg-5">
           <Row className="gx-4 gx-lg-5 justify-content-center">
+            {status === 'success' &&
             <Col className="md-10" lg={8} xl={7}>
               <h1 className="text-center">Write Your Post</h1>
               <div className="my-5">
                 <Form autoComplete="off">
                   <input autoComplete="false" name="hidden" tyoe="text" style={{ display: 'none' }} />
                   <div className="form-floating">
-                    <Form.Control ref={titleRef} name="Title" type="text" placeholder="Title" style={{ fontSize: '20px' }} defaultValue={postData.title}/>
+                    <Form.Control ref={titleRef} name="Title" type="text" placeholder="Title" style={{ fontSize: '20px' }} defaultValue={data.title}/>
                     <Form.Label htmlFor="Title">Title</Form.Label>
                     <div className="invalid-feedback"></div>
                   </div>
                   <div className="form-floating">
-                    <Form.Control ref={previewTextRef} name="Subheading" type="text" placeholder="Subheading" style={{ fontSize: '20px' }} defaultValue={postData.previewText}/>
+                    <Form.Control ref={previewTextRef} name="Subheading" type="text" placeholder="Subheading" style={{ fontSize: '20px' }} defaultValue={data.previewText}/>
                     <Form.Label htmlFor="Subheading">Subheading</Form.Label>
                     <div className="invalid-feedback"></div>
                   </div>
@@ -66,7 +58,7 @@ const EditPost = () => {
                   }}
                   className="form-control"
                   apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
-                  initialValue={postData.content}
+                  initialValue={data.content}
                   init={{
                     selector: 'textarea',
                     menubar: false,
@@ -89,6 +81,7 @@ const EditPost = () => {
                 </Form>
               </div>
             </Col>
+            }
           </Row>
         </Container>
       </main>

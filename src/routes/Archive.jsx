@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { MainNav, HeaderAlt, Container, Row, Col, ArchiveMonthContainer } from '../components'
 import { organiseArchive, getAllPosts } from '../utils'
+import { useQuery } from 'react-query'
 
 const Archive = () => {
-  const [archive, setArchive] = useState([])
-
-  useEffect(() => {
-    getAllPosts()
-      .then((result) => organiseArchive(result))
-      .then((result) => setArchive(result))
-  }, [])
+  const { data, status } = useQuery('postArchive', getAllPosts)
 
   return (
       <>
@@ -21,7 +16,7 @@ const Archive = () => {
               <h1>All Posts</h1>
             </Col>
           </Row>
-          {archive.map((array) =>
+          {status === 'success' && organiseArchive(data).map((array) =>
             <ArchiveMonthContainer key={array[0].yearAndMonthPublished} postArray={array} />
           )}
         </Container>

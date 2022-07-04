@@ -13,6 +13,7 @@ const MainNav = () => {
       navigate('/newpost')
     }
   }
+
   return (
     <Navbar expand="lg" variant="light" id="mainNav" aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation'>
       <Container className="px-4 px-lg-5">

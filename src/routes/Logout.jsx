@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HeaderAlt, MainNav } from '../components'
 import { useAuth } from '../hooks'
 
 const Logout = () => {
@@ -8,19 +7,24 @@ const Logout = () => {
 
   const { setAuth } = useAuth()
 
-  useEffect(() => {
+  const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('isContributor')
-    setAuth({})
+    setAuth({
+      token: '',
+      username: '',
+      isContributor: null
+    })
     navigate(-1, { replace: true })
-  }, [])
+  }
+
+  useEffect(() => {
+    handleLogout()
+  })
 
   return (
-    <>
-      <MainNav />
-      <HeaderAlt />
-    </>
+    <main />
   )
 }
 

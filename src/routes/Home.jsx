@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner, MainNav } from '../components'
 import { headerImageHome } from '../assets'
 import { getRecentPosts } from '../utils'
+import { useQuery } from 'react-query'
 
 const Home = () => {
-  const [recentPosts, setRecentPosts] = useState([])
+  const { data, status } = useQuery('recentPosts', getRecentPosts)
 
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getRecentPosts()
-      .then((result) => setRecentPosts(result))
-      .then(() => setLoading(false))
-  }, [])
   return (
     <>
       <MainNav />
@@ -24,7 +18,8 @@ const Home = () => {
           </Col>
         </Row>
         <Row className="gx-4 gx-lg-5 justify-content-center">
-          {loading ? <HomeSpinner /> : <RecentPostsContainer recentPosts={recentPosts} /> }
+          {status === 'loading' && <HomeSpinner />}
+          {status === 'success' && <RecentPostsContainer recentPosts={data} />}
         </Row>
       </Container>
     </>
