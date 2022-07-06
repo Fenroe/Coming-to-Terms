@@ -18,7 +18,11 @@ const EditPost = () => {
 
   const navigate = useNavigate()
 
-  const { data, status } = useQuery('editPostData', getPost)
+  const getPostWithId = async () => {
+    return await getPost(id)
+  }
+
+  const { data, status } = useQuery('editPostData', getPostWithId)
 
   const handleSave = async () => {
     await updatePost(id, auth.username, titleRef.current.value, previewTextRef.current.value, editorRef.current.getContent(), auth.token)

@@ -11819,6 +11819,50 @@ blockquote {
   font-size: 14px;
 }
 
+.comment-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.comment-options-btn {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  background-color: transparent !important;
+  color: gray !important;
+  font-size: 2rem;
+  height: 3rem !important;
+  width: 6rem !important;
+  outline: black !important;
+  border: 1px solid transparent !important;
+}
+
+.comment-options-btn:focus {
+  outline: black !important;
+  border: 1px solid black !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.comment-dropdown-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -12025,5 +12069,15 @@ header.masthead .post-heading .meta a {
 
 .dropdown-toggle::after {
   display: none;
+}
+
+.page-heading {
+  font-size: 2.75rem;
+}
+
+@media (min-width: 992px) {
+  .page-heading {
+    font-size: 3.25rem;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
