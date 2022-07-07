@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Col, ProfileDrafts } from './index'
+import { Col, ProfileDrafts, ThreeDots, Dropdown } from './index'
 import { useAuth } from '../hooks'
 
 const ProfilePosts = ({ publishedPosts, drafts, username }) => {
@@ -12,8 +12,17 @@ const ProfilePosts = ({ publishedPosts, drafts, username }) => {
         <h1>Published</h1>
         {publishedPosts.length === 0 && <p>No published posts</p>}
         {publishedPosts.map((post) =>
-        <div key={post._id}>
+        <div className="profile-post-container" key={post._id}>
           <a href={`/posts/${post._id}`}>{post.title}</a>
+          <Dropdown>
+            <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as="div">
+                <a href={`/posts/edit/${post._id}`}>Edit post</a>
+              </Dropdown.Item>
+              <Dropdown.Item>Delete post</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
         )}
         {auth.username === username && (

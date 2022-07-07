@@ -1,8 +1,14 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks'
-import { validateUsername, validateEmail, validatePassword, comparePasswords, handleSignup, handleLogin } from '../utils'
-import { Container, Row, Col, Form, HeaderAlt, Button, MainNav } from '../components'
+import {
+  validateUsername, validateEmail, validatePassword,
+  comparePasswords, handleSignup, handleLogin
+} from '../utils'
+import {
+  Container, Row, Col, Form, HeaderAlt, Button,
+  MainNav, ErrorAlert
+} from '../components'
 
 const Signup = () => {
   const [loading, setLoading] = useState(false)
@@ -27,6 +33,27 @@ const Signup = () => {
 
   const navigate = useNavigate()
 
+  const errorMessagesInArray = () => {
+    const errorArray = []
+    if (errorMessages.username !== '') errorArray.push(errorMessages.username)
+    if (errorMessages.email !== '') errorArray.push(errorMessages.email)
+    if (errorMessages.password !== '') errorArray.push(errorMessages.password)
+    if (errorMessages.confirmPassword !== '') errorArray.push(errorMessages.confirmPassword)
+    if (errorMessages.system !== '') errorArray.push(errorMessages.system)
+    return errorArray
+  }
+
+  const resetErrorMessages = () => {
+    setErrorMessages({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      system: ''
+    })
+    errorMessagesInArray()
+  }
+
   const validateSignup = () => {
     let isValid = true
     validateUsername(usernameRef.current.value, (result) => {
@@ -42,7 +69,9 @@ const Signup = () => {
           username: ''
         }))
       }
+      errorMessagesInArray()
     })
+
     validateEmail(emailRef.current.value, (result) => {
       if (result === false) {
         isValid = false
@@ -56,6 +85,7 @@ const Signup = () => {
           email: ''
         }))
       }
+      errorMessagesInArray()
     })
     validatePassword(passwordRef.current.value, (result) => {
       if (result === false) {
@@ -70,6 +100,7 @@ const Signup = () => {
           password: ''
         }))
       }
+      errorMessagesInArray()
     })
     comparePasswords(passwordRef.current.value, confirmPasswordRef.current.value, (result) => {
       if (result === false) {
@@ -84,6 +115,7 @@ const Signup = () => {
           confirmPassword: ''
         }))
       }
+      errorMessagesInArray()
     })
     return isValid
   }
@@ -126,6 +158,7 @@ const Signup = () => {
       setLoading(false)
     }
   }
+
   return (
     <>
       <MainNav />
@@ -156,6 +189,7 @@ const Signup = () => {
                           username: ''
                         }))
                       }
+                      errorMessagesInArray()
                     })}
                     />
                     <Form.Label htmlFor="username">Username</Form.Label>
@@ -180,6 +214,7 @@ const Signup = () => {
                           email: ''
                         }))
                       }
+                      errorMessagesInArray()
                     })}
                     />
                     <Form.Label htmlFor="email">Email</Form.Label>
@@ -205,6 +240,7 @@ const Signup = () => {
                           password: ''
                         }))
                       }
+                      errorMessagesInArray()
                     })}
                     />
                     <Form.Label htmlFor="password">Password</Form.Label>
@@ -230,18 +266,14 @@ const Signup = () => {
                           confirmPassword: ''
                         }))
                       }
+                      errorMessagesInArray()
                     })}
                     />
                     <Form.Label htmlFor="confirm password">Confirm Password</Form.Label>
                   </Form.Floating>
                   <br />
                   <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Sign up</Button>
-                  <div>
-                    <p>{errorMessages.username}</p>
-                    <p>{errorMessages.email}</p>
-                    <p>{errorMessages.password}</p>
-                    <p>{errorMessages.confirmPassword}</p>
-                  </div>
+                  {errorMessagesInArray().length > 0 && <ErrorAlert errorMessage={errorMessagesInArray()} closeAlert={() => resetErrorMessages()}/>}
                 </Form>
               </div>
             </Col>

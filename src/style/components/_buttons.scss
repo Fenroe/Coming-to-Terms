@@ -8,3 +8,41 @@
   letter-spacing: 0.0625em;
   width: 10rem;
 }
+
+.delete-account-btn {
+  letter-spacing: 0.0625em;
+  width: 15rem;
+}
+
+.comment-options-btn, .profile-options-btn, .profile-post-options-btn {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: transparent !important;
+  color: gray !important;
+  font-size: 2rem;
+  height: 3rem !important;
+  width: 6rem !important;
+  outline: black !important;
+  border: 1px solid transparent !important;
+
+  &:focus {
+    outline: black !important;
+    border: 1px solid black !important;
+    box-shadow: none !important;
+  }
+}
+
+.comment-dropdown-btn, .profile-dropdown-btn , .profile-post-dropdown-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &:focus {
+    color: $primary;
+  }
+}

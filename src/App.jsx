@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   Home, About, Archive, EditPost, DeletePost, Login, Signup, Profile,
-  Logout, NewPost, EditProfile, Preview, Post, AuthOnly, ContributorOnly,
+  Logout, NewPost, ProfileSettings, Preview, Post, AuthOnly, ContributorOnly,
   UnauthOnly, NotFound
 } from './routes'
 import { useAuth } from './hooks'
@@ -37,7 +37,7 @@ export const App = () => {
             <Route exact path="/signup" element={ <Signup /> } />
           </Route>
           <Route element={<AuthOnly />}>
-            <Route exact path="/editprofile" element={ <EditProfile /> } />
+            <Route exact path="/editprofile" element={ <ProfileSettings /> } />
           </Route>
           <Route element={<ContributorOnly /> }>
             <Route exact path="/newpost" element={ <NewPost /> } />

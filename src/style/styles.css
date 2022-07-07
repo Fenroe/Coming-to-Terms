@@ -11676,6 +11676,51 @@ blockquote {
   width: 10rem;
 }
 
+.delete-account-btn {
+  letter-spacing: 0.0625em;
+  width: 15rem;
+}
+
+.comment-options-btn, .profile-options-btn, .profile-post-options-btn {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  background-color: transparent !important;
+  color: gray !important;
+  font-size: 2rem;
+  height: 3rem !important;
+  width: 6rem !important;
+  outline: black !important;
+  border: 1px solid transparent !important;
+}
+
+.comment-options-btn:focus, .profile-options-btn:focus, .profile-post-options-btn:focus {
+  outline: black !important;
+  border: 1px solid black !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.comment-dropdown-btn, .profile-dropdown-btn, .profile-post-dropdown-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.comment-dropdown-btn:hover, .profile-dropdown-btn:hover, .profile-post-dropdown-btn:hover {
+  color: #0085A1;
+}
+
+.comment-dropdown-btn:focus, .profile-dropdown-btn:focus, .profile-post-dropdown-btn:focus {
+  color: #0085A1;
+}
+
 .form-floating input,
 .form-floating textarea {
   border-left: 0;
@@ -11696,6 +11741,14 @@ blockquote {
 
 .form-floating label {
   color: #6c757d;
+}
+
+input:-moz-read-only {
+  background-color: transparent !important;
+}
+
+input:read-only {
+  background-color: transparent !important;
 }
 
 #mainNav {
@@ -12069,6 +12122,18 @@ header.masthead .post-heading .meta a {
 
 .dropdown-toggle::after {
   display: none;
+}
+
+.profile-post-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .page-heading {

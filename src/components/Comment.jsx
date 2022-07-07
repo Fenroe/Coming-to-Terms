@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { Card, Dropdown, ThreeDots } from './index'
 import { useAuth } from '../hooks'
 
-const Comment = ({ author, content, dateCommented, dateEdited }) => {
+const Comment = ({
+  id, author, content, dateCommented, dateEdited,
+  handleEditComment, handleDeleteComment
+}) => {
   const { auth } = useAuth()
 
   return (
@@ -23,10 +26,10 @@ const Comment = ({ author, content, dateCommented, dateEdited }) => {
             <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item>
-                <button className="comment-dropdown-btn">Edit comment</button>
+                <button className="comment-dropdown-btn" onClick={() => handleEditComment(id)}>Edit comment</button>
               </Dropdown.Item>
               <Dropdown.Item>
-                <button className="comment-dropdown-btn">Delete comment</button>
+                <button className="comment-dropdown-btn" onClick={() => handleDeleteComment(id)}>Delete comment</button>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -48,10 +51,13 @@ const Comment = ({ author, content, dateCommented, dateEdited }) => {
 }
 
 Comment.propTypes = {
+  id: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.string,
   dateCommented: PropTypes.string,
-  dateEdited: PropTypes.string
+  dateEdited: PropTypes.string,
+  handleEditComment: PropTypes.func,
+  handleDeleteComment: PropTypes.func
 }
 
 export default Comment

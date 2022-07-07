@@ -8,7 +8,7 @@ const ArchivePostCard = ({ id, title, subtitle, author, datePublished }) => {
         <h2 className="post-title">{title}</h2>
         <h3 className="post-subtitle">{subtitle}</h3>
       </a>
-      <p className="post-meta">Posted by <a href={`/posts/${id}`}>{author}</a> on {datePublished}</p>
+      <p className="post-meta">Posted by <a href={`/profile/${author}`}>{author}</a> on {datePublished}</p>
       <hr className="my-4" />
     </div>
   )

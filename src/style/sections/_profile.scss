@@ -17,3 +17,9 @@
 .dropdown-toggle::after {
   display:none;
 }
+
+.profile-post-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

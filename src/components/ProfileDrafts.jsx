@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Dropdown, ThreeDots } from './index'
 
 const ProfileDrafts = ({ drafts }) => {
   return (
@@ -7,9 +8,15 @@ const ProfileDrafts = ({ drafts }) => {
       <h1>Drafts</h1>
       {drafts.length === 0 && <p>No drafts</p>}
       {drafts.map((post) =>
-      <div key={post._id} className="">
-        <a href={`/posts/edit/${post._id}`}>{post.title}</a>
-      </div>
+        <div className="profile-post-container" key={post._id}>
+          <a href={`/posts/edit/${post._id}`}>{post.title}</a>
+          <Dropdown>
+            <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item>Delete post</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
       )}
     </div>
   )

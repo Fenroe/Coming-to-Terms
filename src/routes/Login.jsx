@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Row, Col, Form, HeaderAlt, Button, MainNav } from '../components'
+import {
+  Container, Row, Col, Form, HeaderAlt, Button, MainNav,
+  ErrorAlert
+} from '../components'
 import { handleLogin } from '../utils'
 import { useAuth } from '../hooks'
 
@@ -33,14 +36,12 @@ const Login = () => {
       navigate('/')
     } catch (err) {
       if (err.name === 'AxiosError') {
-        if (err.response.status === 404) {
-          setErrorMessage('Invalid username or password')
-        }
         if (err.response.status >= 500) {
           setErrorMessage('There was a problem on our end. Our servers might be down.')
+        } else {
+          setErrorMessage('Invalid username or password.')
         }
       }
-      console.clear()
     } finally {
       setLoading(false)
     }
@@ -75,9 +76,7 @@ const Login = () => {
                   </div>
                   <br />
                   <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Log in</Button>
-                  <div>
-                    <span>{errorMessage}</span>
-                  </div>
+                  {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')} />}
                 </Form>
               </div>
             </Col>

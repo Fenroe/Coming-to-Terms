@@ -1,11 +1,22 @@
 import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Form, Button, Comment, HomeSpinner } from './index'
+import {
+  Row, Col, Form, Button, Comment, HomeSpinner,
+  EditCommentModal, DeleteCommentModal
+} from './index'
 import { useQuery } from 'react-query'
 import { getPostComments, createComment } from '../utils'
 import { useAuth } from '../hooks'
 
 const PostCommentSection = ({ postId }) => {
+  const [showEditCommentModal, setShowEditCommentModal] = useState(false)
+
+  const [editedCommentId, setEditedCommentId] = useState('')
+
+  const [showDeleteCommentModal, setShowDeleteCommentModal] = useState(false)
+
+  const [deletedCommentId, setDeletedCommentId] = useState('')
+
   const [newCommentLoading, setNewCommentLoading] = useState(false)
 
   const [userAddedComments, setUserAddedComments] = useState([])
@@ -18,8 +29,25 @@ const PostCommentSection = ({ postId }) => {
 
   const getPostCommentsWithId = async () => {
     const result = await getPostComments(postId)
-    console.log(result)
     return result
+  }
+
+  const { data, status, refetch } = useQuery(`postComments${postId}`, getPostCommentsWithId)
+
+  const closeModal = () => {
+    refetch()
+    setShowEditCommentModal(false)
+    setShowDeleteCommentModal(false)
+  }
+
+  const handleEditComment = (commentId) => {
+    setEditedCommentId(commentId)
+    setShowEditCommentModal(true)
+  }
+
+  const handleDeleteComment = (commentId) => {
+    setDeletedCommentId(commentId)
+    setShowDeleteCommentModal(true)
   }
 
   const handleAddNewComment = async () => {
@@ -35,10 +63,24 @@ const PostCommentSection = ({ postId }) => {
     setNewCommentLoading(false)
   }
 
-  const { data, status } = useQuery(`postComments${postId}`, getPostCommentsWithId)
+  const getCombinedCommentStream = () => {
+    const commentIdSet = new Set()
+    data.forEach((comment) => commentIdSet.add(comment._id))
+    const filteredUserAddedComments = userAddedComments.filter((comment) => !commentIdSet.has(comment._id) && comment)
+    return [...filteredUserAddedComments, ...data]
+  }
 
   return (
     <>
+      {showEditCommentModal && <EditCommentModal
+      showCondition={showEditCommentModal}
+      commentId={editedCommentId}
+      closeModal={closeModal} />}
+      {showDeleteCommentModal &&
+      <DeleteCommentModal
+      showCondition={showDeleteCommentModal}
+      commentId={deletedCommentId}
+      closeModal={closeModal} />}
       {status === 'loading' && <HomeSpinner />}
       {status === 'success' &&
       <>
@@ -66,14 +108,17 @@ const PostCommentSection = ({ postId }) => {
         </Row>
         <Row className="gx-4 gx-lg-5 justify-content-center">
           <Col ref={commentSectionRef} className="md-10" lg={8} xl={7}>
-            {[...userAddedComments, ...data].length === 0 && <h2>There are no comments.</h2>}
-            {[...userAddedComments, ...data].map((comment) =>
+            {getCombinedCommentStream().length === 0 && <h2>There are no comments.</h2>}
+            {getCombinedCommentStream().map((comment) =>
             <Comment
             key={comment._id}
+            id={comment._id}
             author={comment.author._id || comment.author}
             content={comment.content}
             dateCommented={comment.dateCommentedFromNow}
             dateEdited={comment.dateEditedFromNow}
+            handleEditComment={handleEditComment}
+            handleDeleteComment={handleDeleteComment}
             />)}
           </Col>
         </Row>

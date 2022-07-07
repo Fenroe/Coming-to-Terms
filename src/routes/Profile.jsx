@@ -66,12 +66,11 @@ const Profile = () => {
                 {data.userData.username === auth.username &&
                   (
                   <Dropdown>
-                    <Dropdown.Toggle style={{ backgroundColor: 'transparent', border: 'none' }}>
-                      <ThreeDots className="profile-heading-three-dots"/>
+                    <Dropdown.Toggle className="profile-options-btn">
+                      <ThreeDots />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Edit profile</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">Delete account</Dropdown.Item>
+                      <Dropdown.Item href="/editprofile">Profile settings</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                   )}
