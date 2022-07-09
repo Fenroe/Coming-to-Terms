@@ -7,6 +7,8 @@ import { useQuery } from 'react-query'
 const Home = () => {
   const { data, status } = useQuery('recentPosts', getRecentPosts)
 
+  console.log(process.env.PUBLIC_URL)
+
   return (
     <>
       <MainNav />
