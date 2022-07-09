@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/coming-to-terms/static/css/main.ad97f21a.css",
-    "main.js": "/coming-to-terms/static/js/main.ee377fe8.js",
+    "main.js": "/coming-to-terms/static/js/main.8bd6632f.js",
     "static/media/header_about.jpg": "/coming-to-terms/static/media/header_about.9662525da79adbd18c89.jpg",
     "static/media/header_post.jpg": "/coming-to-terms/static/media/header_post.ed69d9cd0facacee56a8.jpg",
     "static/media/header_home.jpg": "/coming-to-terms/static/media/header_home.2cffa73f35e412b51aed.jpg",
     "index.html": "/coming-to-terms/index.html",
     "main.ad97f21a.css.map": "/coming-to-terms/static/css/main.ad97f21a.css.map",
-    "main.ee377fe8.js.map": "/coming-to-terms/static/js/main.ee377fe8.js.map"
+    "main.8bd6632f.js.map": "/coming-to-terms/static/js/main.8bd6632f.js.map"
   },
   "entrypoints": [
     "static/css/main.ad97f21a.css",
-    "static/js/main.ee377fe8.js"
+    "static/js/main.8bd6632f.js"
   ]
 }
