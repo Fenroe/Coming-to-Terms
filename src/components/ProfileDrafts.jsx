@@ -13,6 +13,9 @@ const ProfileDrafts = ({ drafts }) => {
           <Dropdown>
             <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
             <Dropdown.Menu>
+              <Dropdown.Item as="div">
+                <a href={`/posts/edit/${post._id}`}>Edit post</a>
+              </Dropdown.Item>
               <Dropdown.Item>Delete post</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

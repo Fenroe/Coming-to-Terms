@@ -4,7 +4,7 @@ import { Modal, Form, Button, ErrorAlert } from './index'
 import { updateUserSecurely } from '../utils'
 import { useAuth } from '../hooks'
 
-const UpdatePasswordModal = ({ showCondition, newEmail, newPassword, closeModal }) => {
+const UpdatePasswordModal = ({ showCondition, newPassword, closeModal, resolveUpdatePassword }) => {
   const [loading, setLoading] = useState(false)
 
   const [passwordReadOnly, setPasswordReadOnly] = useState(true)
@@ -22,7 +22,8 @@ const UpdatePasswordModal = ({ showCondition, newEmail, newPassword, closeModal 
         return setErrorMessage('Please enter your password')
       }
       setLoading(true)
-      await updateUserSecurely(auth.username, passwordRef.current.value, newEmail, newPassword, auth.token)
+      await updateUserSecurely(auth.username, passwordRef.current.value, newPassword, auth.token)
+      resolveUpdatePassword()
     } catch {
       setErrorMessage('The password you entered was incorrect')
     } finally {
@@ -45,17 +46,14 @@ const UpdatePasswordModal = ({ showCondition, newEmail, newPassword, closeModal 
             type="password"
             name="password"
             id="password"
-            placeholder="Enter your password"
+            placeholder="Enter your current password"
             readOnly={passwordReadOnly}/>
-            <Form.Label>Enter your password.</Form.Label>
+            <Form.Label>Enter your current password.</Form.Label>
           </Form.Floating>
-          <br />
+          <Button className="my-3" onClick={handleSave}>Update</Button>
+          {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')}/>}
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleSave}>Update</Button>
-        {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')}/>}
-      </Modal.Footer>
     </Modal>
   )
 }
@@ -64,7 +62,8 @@ UpdatePasswordModal.propTypes = {
   showCondition: PropTypes.bool,
   newEmail: PropTypes.string,
   newPassword: PropTypes.string,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  resolveUpdatePassword: PropTypes.func
 }
 
 export default UpdatePasswordModal

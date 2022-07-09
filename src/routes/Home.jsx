@@ -14,7 +14,7 @@ const Home = () => {
       <Container className="px-4 px-lg-5">
         <Row className="gx-4 gx-lg-5 justify-content-center">
           <Col className="md-10 col-lg-8 col-xl-7 text-center">
-            <h1 className="page-heading">Recent Posts</h1>
+            <h1 className="mb-5 page-heading">Recent Posts</h1>
           </Col>
         </Row>
         <Row className="gx-4 gx-lg-5 justify-content-center">

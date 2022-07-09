@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Alert, ListGroup } from './index'
+import { Alert } from './index'
 
 const ErrorAlert = ({ errorMessage, closeAlert }) => {
   return (
-    <Alert style={{ width: '100%' }} variant="danger" onClose={closeAlert} dismissible>
+    <Alert style={{ width: '100%' }} variant="danger" onClose={closeAlert}>
       {typeof errorMessage === 'string' && <span>{errorMessage}</span> }
       {Array.isArray(errorMessage) &&
-      <ListGroup>
+      <ul>
         {errorMessage.map((message) =>
-        <ListGroup.Item variant="danger" key={message}>
-          * {message}
-        </ListGroup.Item>)}
-      </ListGroup>
+        <li key={message}>
+          {message}
+        </li>)}
+      </ul>
       }
     </Alert>
   )

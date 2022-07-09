@@ -1,11 +1,10 @@
 import { axios } from './index'
 
-const updateUserSecurely = async (username, password, email, newPassword, token) => {
+const updateUserSecurely = async (username, password, newPassword, token) => {
   const updateUserSecurelyUrl = `${process.env.REACT_APP_API_URL}/users/userinfo/sensitiveupdate/${username}`
   const response = await axios.put(updateUserSecurelyUrl, {
     password,
-    email,
-    newPassword
+    newPassword: !newPassword ? password : newPassword
   }, {
     headers: {
       Authorization: `Bearer ${token}`

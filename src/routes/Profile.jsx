@@ -26,7 +26,7 @@ const Profile = () => {
     return await getUser(id)
   }
 
-  const { data, status } = useQuery(
+  const { data, status, refetch } = useQuery(
     `profile${id}`,
     getUserWithId,
     {
@@ -40,6 +40,7 @@ const Profile = () => {
       publishedPosts={data.posts.published}
       drafts={data.posts.drafts}
       username={data.userData.username}
+      refetch={refetch}
       />
     }
     if (showing === 'bio') {

@@ -29,3 +29,22 @@ blockquote {
   font-style: italic;
   color: $gray-600;
 }
+
+// Overflow
+a, h1, h2, h3, h4, h5, h6, p, span, .archive-link, .profile-post-container {
+  overflow-wrap: break-word !important;
+}
+
+.profile-post-container {
+  max-width: 100% !important;
+}
+
+.post-link-wrapper {
+  max-width: 100%;
+  overflow-wrap: break-word !important;
+  overflow: hidden;
+}
+
+.archive-link {
+  font-size: 1.375rem;
+}

@@ -22,7 +22,7 @@ const Post = () => {
       <MainNav />
       {status === 'success'
         ? <Header
-      backgroundImage={headerImagePost}
+      backgroundImage={data.coverImage || headerImagePost}
       heading={data.title}
       subheading={data.previewText}
       metaAuthor={data.author.username}

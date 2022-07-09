@@ -9,7 +9,7 @@ const ProfileBio = ({ bio, username }) => {
   const returnCorrectMessage = () => {
     if (username === auth.username) {
       return (
-        <p>You haven&apos;t written a bio yet. Do you want to <a href={`/profile/edit/${username}`}>Update your profile?</a></p>
+        <p>You haven&apos;t written a bio yet.</p>
       )
     } else {
       return (

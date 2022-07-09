@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { HeaderAlt, Container, Row, Col, Button, MainNav, HomeSpinner } from '../components'
+import { Header, HeaderAlt, Container, Row, Col, Button, MainNav, HomeSpinner } from '../components'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getPost, publishPost } from '../utils'
 import { useAuth } from '../hooks'
 import { useQuery } from 'react-query'
+import { headerImagePost } from '../assets'
 
 const Preview = () => {
   const { id } = useParams()
@@ -27,15 +28,21 @@ const Preview = () => {
   return (
     <>
       <MainNav />
-      <HeaderAlt />
+      {status === 'success'
+        ? <Header
+      backgroundImage={data.coverImage || headerImagePost}
+      heading={data.title}
+      subheading={data.previewText}
+      metaAuthor={data.author.username}
+      metaDate={data.datePublishedFormatted}
+      />
+        : <HeaderAlt /> }
       <main>
         <Container className="px-4 px-lg-5">
           <Row className="gx-4 gx-lg-5 justify-content-center">
             {status === 'loading' && <HomeSpinner />}
             {status === 'success' &&
             <Col className="md-10" lg={8} xl={7}>
-              <h1>{data.title}</h1>
-              <h2>{data.previewText}</h2>
               <div dangerouslySetInnerHTML={{ __html: data.content }} />
               <br />
               <div className="mb-3">

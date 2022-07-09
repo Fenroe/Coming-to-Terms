@@ -76,6 +76,7 @@ const Login = () => {
                   </div>
                   <br />
                   <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Log in</Button>
+                  <Button className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Use test account</Button>
                   {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')} />}
                 </Form>
               </div>

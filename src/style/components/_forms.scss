@@ -1,34 +1,24 @@
-// 
-// Forms
-// 
-
-.form-floating {
-
-  input,
-  textarea {
-      border-left: 0;
-      border-right: 0;
-      border-top: 0;
-
-      &:focus {
-          box-shadow: none;
-      }
-
-  }
-
-  textarea {
-    resize: none;
-    height: 10rem !important;
-  }
-
-  label {
-      color: $gray-600;
-  }
-
+.form-heading {
+  margin-bottom: 2rem;
 }
 
 input {
   &:read-only {
     background-color: transparent !important;   
+  }
+}
+
+textarea {
+  resize: none;
+  height: 10rem !important;
+}
+
+label {
+    color: $gray-600;
+}
+
+form {
+  >button {
+    margin: 1rem 0;
   }
 }

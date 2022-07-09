@@ -11671,6 +11671,24 @@ blockquote {
   color: #6c757d;
 }
 
+a, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, span, .archive-link, .profile-post-container {
+  overflow-wrap: break-word !important;
+}
+
+.profile-post-container {
+  max-width: 100% !important;
+}
+
+.post-link-wrapper {
+  max-width: 100%;
+  overflow-wrap: break-word !important;
+  overflow: hidden;
+}
+
+.archive-link {
+  font-size: 1.375rem;
+}
+
 .btn {
   letter-spacing: 0.0625em;
   width: 10rem;
@@ -11714,33 +11732,15 @@ blockquote {
 }
 
 .comment-dropdown-btn:hover, .profile-dropdown-btn:hover, .profile-post-dropdown-btn:hover {
-  color: #0085A1;
+  color: #0085A1 !important;
 }
 
 .comment-dropdown-btn:focus, .profile-dropdown-btn:focus, .profile-post-dropdown-btn:focus {
-  color: #0085A1;
+  color: #0085A1 !important;
 }
 
-.form-floating input,
-.form-floating textarea {
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-}
-
-.form-floating input:focus,
-.form-floating textarea:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.form-floating textarea {
-  resize: none;
-  height: 10rem !important;
-}
-
-.form-floating label {
-  color: #6c757d;
+.form-heading {
+  margin-bottom: 2rem;
 }
 
 input:-moz-read-only {
@@ -11749,6 +11749,19 @@ input:-moz-read-only {
 
 input:read-only {
   background-color: transparent !important;
+}
+
+textarea {
+  resize: none;
+  height: 10rem !important;
+}
+
+label {
+  color: #6c757d;
+}
+
+form > button {
+  margin: 1rem 0;
 }
 
 #mainNav {
@@ -11958,6 +11971,7 @@ header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
 header.masthead .site-heading .h1 {
   font-size: 3rem;
+  overflow-wrap: break-word;
 }
 
 header.masthead .page-heading .subheading,
@@ -11968,6 +11982,7 @@ header.masthead .site-heading .subheading {
   display: block;
   margin-top: 0.625rem;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  overflow-wrap: break-word;
 }
 
 header.masthead .post-heading h1, header.masthead .post-heading .h1 {
@@ -12074,11 +12089,14 @@ header.masthead .post-heading .meta a {
   font-size: 1.875rem;
   margin-top: 1.875rem;
   margin-bottom: 0.625rem;
+  overflow-wrap: break-word;
 }
 
 .post-preview > a > .post-subtitle {
   font-weight: 300;
+  font-size: 1.5rem;
   margin-bottom: 0.625rem;
+  overflow-wrap: break-word;
 }
 
 .post-preview > .post-meta {

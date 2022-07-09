@@ -4,7 +4,7 @@ import { Alert } from './index'
 
 const SuccessAlert = ({ closeAlert }) => {
   return (
-    <Alert variant="success" onClose={closeAlert} dismissible transition>
+    <Alert variant="success" onClose={closeAlert}>
       Your changes have been saved
     </Alert>
   )

@@ -16,7 +16,7 @@ const Logout = () => {
       username: '',
       isContributor: null
     })
-    navigate(-1, { replace: true })
+    navigate('/', { replace: true })
   }
 
   useEffect(() => {

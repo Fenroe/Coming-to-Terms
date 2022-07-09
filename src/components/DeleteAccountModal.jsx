@@ -51,12 +51,10 @@ const DeleteAccountModal = ({ showCondition, closeModal, resolveDeleteAccount })
             readOnly={passwordReadOnly}/>
             <Form.Label>Enter your password.</Form.Label>
           </Form.Floating>
+          <Button className="delete-account-btn" variant={'danger'} onClick={handleDelete}>Delete Account</Button>
+          {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')}/>}
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button className="delete-account-btn" variant={'danger'} onClick={handleDelete}>Delete Account</Button>
-       {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')}/>}
-      </Modal.Footer>
     </Modal>
   )
 }
