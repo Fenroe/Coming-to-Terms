@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Coming-to-Terms/static/css/main.ad97f21a.css",
-    "main.js": "/Coming-to-Terms/static/js/main.f0779a41.js",
+    "main.js": "/Coming-to-Terms/static/js/main.7dce07b0.js",
     "static/media/header_about.jpg": "/Coming-to-Terms/static/media/header_about.9662525da79adbd18c89.jpg",
     "static/media/header_post.jpg": "/Coming-to-Terms/static/media/header_post.ed69d9cd0facacee56a8.jpg",
     "static/media/header_home.jpg": "/Coming-to-Terms/static/media/header_home.2cffa73f35e412b51aed.jpg",
     "index.html": "/Coming-to-Terms/index.html",
     "main.ad97f21a.css.map": "/Coming-to-Terms/static/css/main.ad97f21a.css.map",
-    "main.f0779a41.js.map": "/Coming-to-Terms/static/js/main.f0779a41.js.map"
+    "main.7dce07b0.js.map": "/Coming-to-Terms/static/js/main.7dce07b0.js.map"
   },
   "entrypoints": [
     "static/css/main.ad97f21a.css",
-    "static/js/main.f0779a41.js"
+    "static/js/main.7dce07b0.js"
   ]
 }
