@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   Home, About, Archive, EditPost, DeletePost, Login, Signup, Profile,
   Logout, NewPost, ProfileSettings, Preview, Post, AuthOnly, ContributorOnly,
@@ -45,7 +45,7 @@ export const App = () => {
             <Route exact path="/posts/edit/:id" element={ <EditPost /> } />
             <Route exact path="/posts/delete/:id" element={ <DeletePost /> } />
           </Route>
-          <Route exact path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </QueryClientProvider>
