@@ -153,7 +153,32 @@ const Signup = () => {
           }))
         }
       }
-      console.clear()
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleTestAccountLogin = async () => {
+    try {
+      if (loading) return
+      setLoading(true)
+      const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_USERNAME, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
+      localStorage.setItem('token', loginResponse.data.token)
+      localStorage.setItem('username', loginResponse.data.username)
+      localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
+      setAuth({
+        token: loginResponse.data.token,
+        username: loginResponse.data.username,
+        isContributor: loginResponse.data.isContributor
+      })
+      navigate('/')
+    } catch (err) {
+      if (err.name === 'AxiosError') {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          system: 'There was a problem on our end. Our servers might be down.'
+        }))
+      }
     } finally {
       setLoading(false)
     }
@@ -272,7 +297,12 @@ const Signup = () => {
                     <Form.Label htmlFor="confirm password">Confirm Password</Form.Label>
                   </Form.Floating>
                   <br />
-                  <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Sign up</Button>
+                  <div className="mb-3">
+                    <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Sign up</Button>
+                  </div>
+                  <div className="mb-3">
+                    <Button className="btn text-uppercase" variant='danger' type="button" onClick={handleTestAccountLogin}>Use test account</Button>
+                  </div>
                   {errorMessagesInArray().length > 0 && <ErrorAlert errorMessage={errorMessagesInArray()} closeAlert={() => resetErrorMessages()}/>}
                 </Form>
               </div>

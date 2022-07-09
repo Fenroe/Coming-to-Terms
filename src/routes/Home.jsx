@@ -17,10 +17,8 @@ const Home = () => {
             <h1 className="mb-5 page-heading">Recent Posts</h1>
           </Col>
         </Row>
-        <Row className="gx-4 gx-lg-5 justify-content-center">
-          {status === 'loading' && <HomeSpinner />}
-          {status === 'success' && <RecentPostsContainer recentPosts={data} />}
-        </Row>
+        {status === 'loading' && <HomeSpinner />}
+        {status === 'success' && <RecentPostsContainer recentPosts={data} />}
       </Container>
     </>
   )

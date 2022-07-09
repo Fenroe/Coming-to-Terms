@@ -47,6 +47,29 @@ const Login = () => {
     }
   }
 
+  const handleTestAccountLogin = async () => {
+    try {
+      if (loading) return
+      setLoading(true)
+      const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_USERNAME, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
+      localStorage.setItem('token', loginResponse.data.token)
+      localStorage.setItem('username', loginResponse.data.username)
+      localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
+      setAuth({
+        token: loginResponse.data.token,
+        username: loginResponse.data.username,
+        isContributor: loginResponse.data.isContributor
+      })
+      navigate('/')
+    } catch (err) {
+      if (err.name === 'AxiosError') {
+        setErrorMessage('There was a problem on our end. Our servers might be down.')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <>
       <MainNav />
@@ -75,8 +98,12 @@ const Login = () => {
                     <Form.Label htmlFor="password">Password</Form.Label>
                   </div>
                   <br />
-                  <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Log in</Button>
-                  <Button className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Use test account</Button>
+                  <div className="mb-3">
+                    <Button id="submitButton" className="btn btn-primary text-uppercase" type="button" onClick={handleSubmit}>Log in</Button>
+                  </div>
+                  <div className="mb-3">
+                    <Button className="btn btn-primary text-uppercase" variant="danger" type="button" onClick={handleTestAccountLogin}>Use test account</Button>
+                  </div>
                   {errorMessage !== '' && <ErrorAlert errorMessage={errorMessage} closeAlert={() => setErrorMessage('')} />}
                 </Form>
               </div>
