@@ -9,7 +9,7 @@ const ArchiveMonthContainer = ({ postArray }) => {
         <h2 className="mb-4">{postArray[0].yearAndMonthPublished}</h2>
         {postArray.map((post) =>
         <div key={post._id} className="my-2">
-          <a className="archive-link" href={`/posts/${post._id}`}>{post.title}</a>
+          <a className="archive-link" href={`/coming-to-terms/posts/${post._id}`}>{post.title}</a>
         </div>
         )}
       </Col>

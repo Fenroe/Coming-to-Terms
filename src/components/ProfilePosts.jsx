@@ -51,14 +51,14 @@ const ProfilePosts = ({
         {publishedPosts.map((post) =>
         <div className="profile-post-container" key={post._id}>
           <div className="post-link-wrapper">
-            <a className="profile-post-link" href={`/posts/${post._id}`}>{post.title}</a>
+            <a className="profile-post-link" href={`/coming-to-terms/posts/${post._id}`}>{post.title}</a>
           </div>
           {auth.username === username &&
           <Dropdown>
             <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as="div">
-                <a href={`/posts/edit/${post._id}`}>Edit post</a>
+                <a href={`/coming-to-terms/posts/edit/${post._id}`}>Edit post</a>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>
@@ -75,13 +75,13 @@ const ProfilePosts = ({
               {drafts.map((post) =>
                 <div className="profile-post-container" key={post._id}>
                   <div className="post-link-wrapper">
-                    <a href={`/posts/edit/${post._id}`}>{post.title}</a>
+                    <a href={`/coming-to-terms/posts/edit/${post._id}`}>{post.title}</a>
                   </div>
                   <Dropdown>
                     <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item as="div">
-                        <a href={`/posts/edit/${post._id}`}>Edit post</a>
+                        <a href={`/coming-to-terms/posts/edit/${post._id}`}>Edit post</a>
                       </Dropdown.Item>
                       <Dropdown.Item>
                         <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>

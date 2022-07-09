@@ -71,7 +71,7 @@ const Profile = () => {
                       <ThreeDots />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/editprofile">Profile settings</Dropdown.Item>
+                      <Dropdown.Item href="/coming-to-terms/editprofile">Profile settings</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                   )}

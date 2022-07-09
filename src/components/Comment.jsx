@@ -14,8 +14,10 @@ const Comment = ({
       <Card>
         <Card.Header className="comment-header">
           <div>
-            <Card.Title as="a" href={`/profile/${author}`} className="comment-author-text">
-              {author}
+            <Card.Title className="comment-author-text">
+              <a href={`/coming-to-terms/profile/${author}`}>
+                {author}
+              </a>
             </Card.Title>
             <Card.Subtitle>
               {dateCommented}
