@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner, MainNav, NetworkError } from '../components'
 import { headerImageHome } from '../assets'
 import { getRecentPosts } from '../utils'
@@ -6,10 +6,6 @@ import { useQuery } from 'react-query'
 
 const Home = () => {
   const { data, status } = useQuery('recentPosts', getRecentPosts)
-
-  useEffect(() => {
-    console.log(process.env.PUBLIC_URL)
-  }, [])
 
   return (
     <>

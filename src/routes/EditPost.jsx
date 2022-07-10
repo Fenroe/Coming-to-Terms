@@ -52,7 +52,7 @@ const EditPost = () => {
     return await getPost(id)
   }
 
-  const { data, status } = useQuery('editPostData', getPostWithId)
+  const { data, status } = useQuery(`editPostData${id}`, getPostWithId)
 
   const onFocus = () => {
     setShowSuccess(false)

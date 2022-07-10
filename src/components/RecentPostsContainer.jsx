@@ -8,7 +8,7 @@ const RecentPostsContainer = ({ recentPosts }) => {
       <Col className="md-10 col-lg-8 col-xl-7">
         {recentPosts.length === 0
           ? (
-          <p>No posts to show.</p>
+          <h2 className="text-center">No posts to show.</h2>
             )
           : null}
         {recentPosts.map((post) =>
