@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Navbar, Container, Nav, Button } from './index'
 import { useAuth } from '../hooks'
 
@@ -17,27 +17,27 @@ const MainNav = () => {
   return (
     <Navbar expand="lg" variant="light" id="mainNav" aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation'>
       <Container className="px-4 px-lg-5">
-        <Navbar.Brand href="/coming-to-terms">Coming to Terms</Navbar.Brand>
+        <Link className="navbar-brand" to="/">Coming to Terms</Link>
         <Navbar.Toggle />
         <Navbar.Collapse id="navbarResponsive">
           <Nav className="navbar-nav ms-auto py-4 py-lg-0">
             <Nav.Item as="li" className="nav-item">
-              <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/coming-to-terms">Home</Nav.Link>
+              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/">Home</Link>
             </Nav.Item>
             <Nav.Item as="li">
-              <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/coming-to-terms/about">About</Nav.Link>
+              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/about">About</Link>
             </Nav.Item>
             <Nav.Item as="li">
-              <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/coming-to-terms/posts/archive">Archive</Nav.Link>
+              <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/posts/archive">Archive</Link>
             </Nav.Item>
             { auth.token
               ? (
               <>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href={`/coming-to-terms/profile/${auth.username}`}>Profile</Nav.Link>
+                  <Link className="nav-link px-lg-3 py-3 py-lg-4" to={`/profile/${auth.username}`}>Profile</Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href='/coming-to-terms/logout'>Log out</Nav.Link>
+                  <Link className="nav-link px-lg-3 py-3 py-lg-4" to='/logout'>Log out</Link>
                 </Nav.Item>
                     {auth.isContributor === true && (
                       <Nav.Item as="li" className="nav-btn-container">
@@ -48,10 +48,10 @@ const MainNav = () => {
               : (
                 <>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/coming-to-terms/login">Log in</Nav.Link>
+                  <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/login">Log in</Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                  <Nav.Link className="nav-link px-lg-3 py-3 py-lg-4" href="/coming-to-terms/signup">Sign up</Nav.Link>
+                  <Link className="nav-link px-lg-3 py-3 py-lg-4" to="/signup">Sign up</Link>
                 </Nav.Item>
               </>
                 )}

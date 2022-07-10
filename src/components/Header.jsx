@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Container, Row, Col } from './index'
 
@@ -11,7 +12,7 @@ const Header = ({ backgroundImage, heading, subheading, metaAuthor, metaDate }) 
           <div className="site-heading">
             <h1>{heading}</h1>
             {subheading ? <span className="subheading">{subheading}</span> : null}
-            {metaAuthor && metaDate ? <span className="meta">Posted by <a href={`/coming-to-terms/profile/${metaAuthor}`}>{metaAuthor}</a> on {metaDate}</span> : null}
+            {metaAuthor && metaDate ? <span className="meta">Posted by <Link to={`/profile/${metaAuthor}`}>{metaAuthor}</Link> on {metaDate}</span> : null}
           </div>
         </Col>
       </Row>

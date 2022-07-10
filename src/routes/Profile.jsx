@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   HeaderAlt, Container, Row, Col, Nav, ProfilePosts,
   ProfileBio, ThreeDots, Dropdown, MainNav, HomeSpinner,
@@ -71,7 +71,9 @@ const Profile = () => {
                       <ThreeDots />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="/coming-to-terms/editprofile">Profile settings</Dropdown.Item>
+                      <Dropdown.Item >
+                        <Link to="/editprofile">Profile settings</Link>
+                      </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                   )}

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Card, Dropdown, ThreeDots } from './index'
 import { useAuth } from '../hooks'
@@ -15,9 +16,7 @@ const Comment = ({
         <Card.Header className="comment-header">
           <div>
             <Card.Title className="comment-author-text">
-              <a href={`/coming-to-terms/profile/${author}`}>
-                {author}
-              </a>
+              <Link to={`/profile/${author}`}>{author}</Link>
             </Card.Title>
             <Card.Subtitle>
               {dateCommented}

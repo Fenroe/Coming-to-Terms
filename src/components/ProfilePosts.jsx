@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Col, ThreeDots, Dropdown, DeletePostModal } from './index'
 import { useAuth } from '../hooks'
@@ -51,14 +52,14 @@ const ProfilePosts = ({
         {publishedPosts.map((post) =>
         <div className="profile-post-container" key={post._id}>
           <div className="post-link-wrapper">
-            <a className="profile-post-link" href={`/coming-to-terms/posts/${post._id}`}>{post.title}</a>
+            <Link className="profile-post-link" to={`/posts/${post._id}`}>{post.title}</Link>
           </div>
           {auth.username === username &&
           <Dropdown>
             <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as="div">
-                <a href={`/coming-to-terms/posts/edit/${post._id}`}>Edit post</a>
+                <Link to={`/posts/edit/${post._id}`}>Edit post</Link>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>
@@ -75,13 +76,13 @@ const ProfilePosts = ({
               {drafts.map((post) =>
                 <div className="profile-post-container" key={post._id}>
                   <div className="post-link-wrapper">
-                    <a href={`/coming-to-terms/posts/edit/${post._id}`}>{post.title}</a>
+                    <Link to={`/posts/edit/${post._id}`}>{post.title}</Link>
                   </div>
                   <Dropdown>
                     <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item as="div">
-                        <a href={`/coming-to-terms/posts/edit/${post._id}`}>Edit post</a>
+                        <Link to={`/posts/edit/${post._id}`}>Edit post</Link>
                       </Dropdown.Item>
                       <Dropdown.Item>
                         <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>

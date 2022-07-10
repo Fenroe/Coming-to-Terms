@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Row, Col } from './index'
 
@@ -9,7 +10,7 @@ const ArchiveMonthContainer = ({ postArray }) => {
         <h2 className="mb-4">{postArray[0].yearAndMonthPublished}</h2>
         {postArray.map((post) =>
         <div key={post._id} className="my-2">
-          <a className="archive-link" href={`/coming-to-terms/posts/${post._id}`}>{post.title}</a>
+          <Link to={`/posts/${post._id}`} className="archive-link">{post.title}</Link>
         </div>
         )}
       </Col>

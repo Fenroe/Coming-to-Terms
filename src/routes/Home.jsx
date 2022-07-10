@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner, MainNav } from '../components'
+import { Container, Row, Col, Header, RecentPostsContainer, HomeSpinner, MainNav, NetworkError } from '../components'
 import { headerImageHome } from '../assets'
 import { getRecentPosts } from '../utils'
 import { useQuery } from 'react-query'
@@ -22,6 +22,7 @@ const Home = () => {
           </Col>
         </Row>
         {status === 'loading' && <HomeSpinner />}
+        {status === 'error' && <NetworkError />}
         {status === 'success' && <RecentPostsContainer recentPosts={data} />}
       </Container>
     </>
