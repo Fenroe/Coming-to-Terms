@@ -39,6 +39,7 @@ const ProfileSettings = () => {
 
   const resolveUpdatePassword = () => {
     setShowUpdatePasswordModal(false)
+    newPasswordRef.current.value = ''
     setShowPasswordSaved(true)
   }
 
