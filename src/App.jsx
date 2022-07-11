@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {
   Home, About, Archive, EditPost, DeletePost, Login, Signup, Profile,
   Logout, NewPost, ProfileSettings, Preview, Post, AuthOnly, ContributorOnly,
