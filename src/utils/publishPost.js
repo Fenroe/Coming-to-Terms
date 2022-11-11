@@ -1,7 +1,7 @@
 import { axios } from './index'
 
 const publishPost = async (postId, username, token) => {
-  const publishPostUrl = `${process.env.REACT_APP_API_URL}/posts/publish/${postId}`
+  const publishPostUrl = `${process.env.REACT_APP_API_URL}/articles/publish/${postId}`
   const response = await axios.put(publishPostUrl, {
     username
   }

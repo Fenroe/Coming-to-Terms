@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
   Header, Container, Row, Col, MainNav,
-  HomeSpinner, HeaderAlt, PostCommentSection
+  HomeSpinner, HeaderAlt
 } from '../components'
 import { getPost } from '../utils'
 import { headerImagePost } from '../assets'
@@ -39,7 +39,6 @@ const Post = () => {
                 <div dangerouslySetInnerHTML={{ __html: data.content }}/>
               </Col>
             </Row>
-            <PostCommentSection postId={id} />
           </>
         }
         </Container>

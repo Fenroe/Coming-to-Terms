@@ -127,13 +127,13 @@ const Signup = () => {
       setLoading(true)
       const response = await handleSignup(usernameRef.current.value, emailRef.current.value, passwordRef.current.value)
       if (response.data.userWasCreated === true) {
-        const loginResponse = await handleLogin(usernameRef.current.value, passwordRef.current.value)
+        const loginResponse = await handleLogin(emailRef.current.value, passwordRef.current.value)
         localStorage.setItem('token', loginResponse.data.token)
-        localStorage.setItem('username', loginResponse.data.username)
+        localStorage.setItem('username', loginResponse.data.profile.username)
         localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
         setAuth({
           token: loginResponse.data.token,
-          username: loginResponse.data.username,
+          username: loginResponse.data.profile.username,
           isContributor: loginResponse.data.isContributor
         })
         navigate('/')
@@ -164,11 +164,11 @@ const Signup = () => {
       setLoading(true)
       const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_USERNAME, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
       localStorage.setItem('token', loginResponse.data.token)
-      localStorage.setItem('username', loginResponse.data.username)
+      localStorage.setItem('username', loginResponse.data.profile.username)
       localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
       setAuth({
         token: loginResponse.data.token,
-        username: loginResponse.data.username,
+        username: loginResponse.data.profile.username,
         isContributor: loginResponse.data.isContributor
       })
       navigate('/')

@@ -26,7 +26,7 @@ const Profile = () => {
     return await getUser(id)
   }
 
-  const { data, status, refetch } = useQuery(
+  const { data, status } = useQuery(
     `profile${id}`,
     getUserWithId,
     {
@@ -37,16 +37,14 @@ const Profile = () => {
   const renderComponent = () => {
     if (showing === 'posts') {
       return <ProfilePosts
-      publishedPosts={data.posts.published}
-      drafts={data.posts.drafts}
-      username={data.userData.username}
-      refetch={refetch}
+      profileId={data.profile._id}
+      username={data.profile.username}
       />
     }
     if (showing === 'bio') {
       return <ProfileBio
-      bio={data.userData.bio}
-      username={data.userData.username}
+      bio={data.profile.bio}
+      username={data.profile.username}
       />
     }
   }
@@ -63,8 +61,8 @@ const Profile = () => {
           <Row className="gx-4 gx-lg-5 justify-content-center">
             <Col className="md-10 justify-content-between" lg={8} xl={7}>
               <div className="profile-heading">
-                <h1>{data.userData.username}</h1>
-                {data.userData.username === auth.username &&
+                <h1>{data.profile.username}</h1>
+                {data.profile.username === auth.username &&
                   (
                   <Dropdown>
                     <Dropdown.Toggle className="profile-options-btn">
@@ -84,7 +82,7 @@ const Profile = () => {
             <Col className="md-10" lg={8} xl={7}>
               <Nav className="nav-tabs justify-content-center">
                 <Nav.Link className={setActive('bio')} onClick={() => setShowing('bio')}>Bio</Nav.Link>
-                {data.userData.isContributor && <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link>}
+                <Nav.Link className={setActive('posts')} onClick={() => setShowing('posts')}>Posts</Nav.Link>
               </Nav>
             </Col>
           </Row>

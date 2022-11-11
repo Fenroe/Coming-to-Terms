@@ -64,7 +64,7 @@ const EditPost = () => {
     validateTitle()
     if (errorMessage !== '') return
     setLoading(true)
-    await updatePost(id, auth.username, titleRef.current.value, previewTextRef.current.value, coverImageUrlRef.current.value, editorRef.current.getContent(), auth.token)
+    await updatePost(id, titleRef.current.value, previewTextRef.current.value, editorRef.current.getContent(), coverImageUrlRef.current.value, auth.token)
     setErrorMessage('')
     setShowSuccess(true)
     setLoading(false)
@@ -75,7 +75,7 @@ const EditPost = () => {
     validateTitle()
     if (errorMessage !== '') return
     setLoading(true)
-    await updatePost(id, auth.username, titleRef.current.value, previewTextRef.current.value, coverImageUrlRef.current.value, editorRef.current.getContent(), auth.token)
+    await updatePost(id, titleRef.current.value, previewTextRef.current.value, editorRef.current.getContent(), coverImageUrlRef.current.value, auth.token)
     setErrorMessage('')
     navigate(`/preview/${id}`)
     setLoading(false)
@@ -93,7 +93,7 @@ const EditPost = () => {
               <h1 className="text-center">Write Your Post</h1>
               <div className="my-5">
                 <Form autoComplete="off">
-                  <input autoComplete="false" name="hidden" tyoe="text" style={{ display: 'none' }} />
+                  <input autoComplete="false" name="hidden" type="text" style={{ display: 'none' }} />
                   <div className="form-floating">
                     <Form.Control onFocus={onFocus} onBlur={validateTitle} ref={titleRef} name="title" type="text" placeholder="Title" style={{ fontSize: '20px' }} defaultValue={data.title}/>
                     <Form.Label htmlFor="title">Title</Form.Label>

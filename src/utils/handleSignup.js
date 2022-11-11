@@ -1,6 +1,6 @@
 import { axios } from './index'
 
-const signupFetchUrl = `${process.env.REACT_APP_API_URL}/users/signup`
+const signupFetchUrl = `${process.env.REACT_APP_API_URL}/profiles/signup`
 
 const handleSignup = async (username, email, password) => {
   const response = await axios.post(signupFetchUrl, {

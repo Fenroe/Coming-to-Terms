@@ -14,7 +14,7 @@ const Login = () => {
 
   const { setAuth } = useAuth()
 
-  const usernameRef = useRef()
+  const emailRef = useRef()
 
   const passwordRef = useRef()
 
@@ -24,13 +24,13 @@ const Login = () => {
     try {
       if (loading) return
       setLoading(true)
-      const loginResponse = await handleLogin(usernameRef.current.value, passwordRef.current.value)
+      const loginResponse = await handleLogin(emailRef.current.value, passwordRef.current.value)
       localStorage.setItem('token', loginResponse.data.token)
-      localStorage.setItem('username', loginResponse.data.username)
+      localStorage.setItem('username', loginResponse.data.profile.username)
       localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
       setAuth({
         token: loginResponse.data.token,
-        username: loginResponse.data.username,
+        username: loginResponse.data.profile.username,
         isContributor: loginResponse.data.isContributor
       })
       navigate('/')
@@ -53,11 +53,11 @@ const Login = () => {
       setLoading(true)
       const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_USERNAME, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
       localStorage.setItem('token', loginResponse.data.token)
-      localStorage.setItem('username', loginResponse.data.username)
+      localStorage.setItem('username', loginResponse.data.profile.username)
       localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
       setAuth({
         token: loginResponse.data.token,
-        username: loginResponse.data.username,
+        username: loginResponse.data.profile.username,
         isContributor: loginResponse.data.isContributor
       })
       navigate('/')
@@ -81,10 +81,10 @@ const Login = () => {
               <h1 className="text-center">Log in</h1>
               <div className="my-5">
                 <Form autoComplete="off" preventdefault="true">
-                  <input autoComplete="false" name="hidden" tyoe="text" style={{ display: 'none' }} />
+                  <input autoComplete="false" name="hidden" type="text" style={{ display: 'none' }} />
                   <div className="form-floating">
-                    <Form.Control ref={usernameRef} name="username" id="username" type="text" placeholder="Username" />
-                    <Form.Label htmlFor="username">Username</Form.Label>
+                    <Form.Control ref={emailRef} name="email" id="email" type="email" placeholder="Email" />
+                    <Form.Label htmlFor="email">Email</Form.Label>
                   </div>
                   <div className="form-floating">
                     <Form.Control

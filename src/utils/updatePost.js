@@ -1,14 +1,12 @@
 import { axios } from './index'
 
-const updatePost = async (postId, username, title, previewText, coverImage, content, token) => {
+const updatePost = async (postId, title, subtitle, content, coverImage, token) => {
   const updatePostUrl = `${process.env.REACT_APP_API_URL}/posts/postinfo/${postId}`
   const response = await axios.put(updatePostUrl, {
-    postId,
-    username,
     title,
-    previewText,
-    coverImage,
-    content
+    subtitle,
+    content,
+    coverImage
   }, {
     headers: {
       Authorization: `Bearer ${token}`

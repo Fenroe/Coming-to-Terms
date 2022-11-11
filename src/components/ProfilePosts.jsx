@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Col, ThreeDots, Dropdown, DeletePostModal } from './index'
 import { useAuth } from '../hooks'
-import { deletePost } from '../utils'
+import { getUserPosts, getMyPosts, deletePost } from '../utils'
+import { useQuery } from 'react-query'
 
 const ProfilePosts = ({
-  publishedPosts, drafts, username, refetch
+  username, profileId
 }) => {
   const [loading, setLoading] = useState(false)
+
+  const { auth } = useAuth()
+
+  const { data, status, refetch } = useQuery(
+    `userposts${profileId}`,
+    username === auth.username ? getMyPosts() : getUserPosts(profileId)
+  )
 
   const [
     showDeletePostModal,
@@ -16,8 +24,6 @@ const ProfilePosts = ({
   ] = useState(false)
 
   const [postToDelete, setPostToDelete] = useState('')
-
-  const { auth } = useAuth()
 
   const closeModal = () => {
     setShowDeletePostModal(false)
@@ -46,10 +52,11 @@ const ProfilePosts = ({
       showCondition={showDeletePostModal}
       handleDeletePost={handleDeletePost}
       closeModal={closeModal}/>}
+      {status === 'success' &&
       <Col className="md-10" lg={8} xl={7}>
         <h1>Published</h1>
-        {publishedPosts.length === 0 && <p>No published posts</p>}
-        {publishedPosts.map((post) =>
+        {data.articles.filter((article) => article.isPublished && article).length === 0 && <p>No published posts</p>}
+        {data.articles.filter((article) => article.isPublished && article).map((post) =>
         <div className="profile-post-container" key={post._id}>
           <div className="post-link-wrapper">
             <Link className="profile-post-link" to={`/posts/${post._id}`}>{post.title}</Link>
@@ -72,8 +79,8 @@ const ProfilePosts = ({
         {auth.username === username && (
               <div className="">
               <h1>Drafts</h1>
-              {drafts.length === 0 && <p>No drafts</p>}
-              {drafts.map((post) =>
+              {data.articles.filter((article) => !article.isPublished && article).length === 0 && <p>No drafts</p>}
+              {data.articles.filter((article) => !article.isPublished && article).map((post) =>
                 <div className="profile-post-container" key={post._id}>
                   <div className="post-link-wrapper">
                     <Link to={`/posts/edit/${post._id}`}>{post.title}</Link>
@@ -94,15 +101,14 @@ const ProfilePosts = ({
             </div>
         )}
       </Col>
+      }
     </>
   )
 }
 
 ProfilePosts.propTypes = {
-  publishedPosts: PropTypes.array,
-  drafts: PropTypes.array,
-  username: PropTypes.string,
-  refetch: PropTypes.func
+  profileId: PropTypes.string,
+  username: PropTypes.string
 }
 
 export default ProfilePosts
