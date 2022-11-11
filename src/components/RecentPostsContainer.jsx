@@ -16,7 +16,7 @@ const RecentPostsContainer = ({ recentPosts }) => {
         key={post._id}
         id={post.url}
         title={post.title}
-        subtitle={post.previewText}
+        subtitle={post.subtitle}
         author={post.profile.username}
         datePublished={post.datePublishedFormatted}
         />)}
