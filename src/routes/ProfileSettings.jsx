@@ -48,11 +48,13 @@ const ProfileSettings = () => {
     setAuth({
       token: '',
       username: '',
-      isContributor: null
+      isContributor: null,
+      email: ''
     })
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('isContributor')
+    localStorage.removeItem('email')
     navigate('/')
   }
 
@@ -86,7 +88,7 @@ const ProfileSettings = () => {
     setShowBioSaved(false)
     setShowPasswordSaved(false)
     setUpdatePasswordErrorMessage('')
-    if (bioRef.current.value !== data.userData.bio) {
+    if (bioRef.current.value !== data.bio) {
       await updateUser(auth.username, bioRef.current.value, auth.token)
     }
     setShowBioSaved(true)
@@ -122,6 +124,7 @@ const ProfileSettings = () => {
     <>
       {showUpdatePasswordModal && <UpdatePasswordModal
       showCondition={showUpdatePasswordModal}
+      email={auth.email}
       newPassword={newPasswordRef.current.value}
       closeModal={closeModal}
       resolveUpdatePassword={resolveUpdatePassword}/>}
@@ -150,7 +153,7 @@ const ProfileSettings = () => {
                     name="bio"
                     id="bio"
                     placeholder="Update your bio."
-                    defaultValue={data.userData.bio}/>
+                    defaultValue={data.bio}/>
                     <Form.Label
                     htmlFor="bio">
                       Update your bio.
@@ -176,12 +179,12 @@ const ProfileSettings = () => {
                     onFocus={onPasswordFocus}
                     onBlur={onPasswordBlur}
                     type="password" name="password" id="password"
-                    placeholder="Change your password."
+                    placeholder="Enter new password."
                     readOnly={passwordReadOnly}
                     autoComplete="new-password"/>
                     <Form.Label
                     htmlFor="password">
-                      Change your password.
+                      Enter new password
                     </Form.Label>
                   </Form.Floating>
                   <Button

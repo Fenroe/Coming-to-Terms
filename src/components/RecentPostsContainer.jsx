@@ -14,10 +14,10 @@ const RecentPostsContainer = ({ recentPosts }) => {
         {recentPosts.map((post) =>
         <PostCard
         key={post._id}
-        id={post._id}
+        id={post.url}
         title={post.title}
         subtitle={post.previewText}
-        author={post.author.username}
+        author={post.profile.username}
         datePublished={post.datePublishedFormatted}
         />)}
       </Col>

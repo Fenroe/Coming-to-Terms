@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Header, HeaderAlt, Container, Row, Col, Button, MainNav, HomeSpinner } from '../components'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getPost, publishPost } from '../utils'
+import { getEditablePost, publishPost } from '../utils'
 import { useAuth } from '../hooks'
 import { useQuery } from 'react-query'
 import { headerImagePost } from '../assets'
@@ -20,7 +20,7 @@ const Preview = () => {
   }
 
   const getPostWithId = async () => {
-    return await getPost(id)
+    return await getEditablePost(id, auth.token)
   }
 
   const { data, status } = useQuery(`preview${id}`, getPostWithId)
@@ -32,8 +32,8 @@ const Preview = () => {
         ? <Header
       backgroundImage={data.coverImage || headerImagePost}
       heading={data.title}
-      subheading={data.previewText}
-      metaAuthor={data.author.username}
+      subheading={data.subtitle}
+      metaAuthor={data.profile.username}
       metaDate={data.datePublishedFormatted}
       />
         : <HeaderAlt /> }

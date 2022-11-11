@@ -11,10 +11,12 @@ const Logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('isContributor')
+    localStorage.removeItem('email')
     setAuth({
       token: '',
       username: '',
-      isContributor: null
+      isContributor: null,
+      email: ''
     })
     navigate('/', { replace: true })
   }

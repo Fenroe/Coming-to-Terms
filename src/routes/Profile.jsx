@@ -37,14 +37,14 @@ const Profile = () => {
   const renderComponent = () => {
     if (showing === 'posts') {
       return <ProfilePosts
-      profileId={data.profile._id}
-      username={data.profile.username}
+      profileId={data._id}
+      username={data.username}
       />
     }
     if (showing === 'bio') {
       return <ProfileBio
-      bio={data.profile.bio}
-      username={data.profile.username}
+      bio={data.bio}
+      username={data.username}
       />
     }
   }
@@ -61,15 +61,15 @@ const Profile = () => {
           <Row className="gx-4 gx-lg-5 justify-content-center">
             <Col className="md-10 justify-content-between" lg={8} xl={7}>
               <div className="profile-heading">
-                <h1>{data.profile.username}</h1>
-                {data.profile.username === auth.username &&
+                <h1>{data.username}</h1>
+                {data.username === auth.username &&
                   (
                   <Dropdown>
                     <Dropdown.Toggle className="profile-options-btn">
                       <ThreeDots />
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item >
+                      <Dropdown.Item as="div" >
                         <Link to="/editprofile">Profile settings</Link>
                       </Dropdown.Item>
                     </Dropdown.Menu>

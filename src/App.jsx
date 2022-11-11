@@ -18,7 +18,8 @@ export const App = () => {
       token: localStorage.getItem('token'),
       username: localStorage.getItem('username'),
       // localstorage saves strings only, stringify the boolean in login / signup then parse it here
-      isContributor: JSON.parse(localStorage.getItem('isContributor'))
+      isContributor: JSON.parse(localStorage.getItem('isContributor')),
+      email: localStorage.getItem('email')
     })
   }, [])
 

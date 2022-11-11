@@ -1,6 +1,6 @@
 import { axios } from './index'
 
-const getAllPostsUrl = `${process.env.REACT_APP_API_URL}/posts/archive`
+const getAllPostsUrl = `${process.env.REACT_APP_API_URL}/articles/all`
 
 const getAllPosts = async () => {
   const response = await axios.get(getAllPostsUrl)

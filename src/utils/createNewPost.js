@@ -11,7 +11,7 @@ const createNewPost = async (title, username, token) => {
       Authorization: `Bearer ${token}`
     }
   })
-  return response.data.post._id
+  return response.data.article.url
 }
 
 export default createNewPost

@@ -32,8 +32,8 @@ const NewPost = () => {
     if (titleRef.current.value.length > 50) return setErrorMessage('Title can\'t be longer than 50 characters.')
     try {
       setLoading(true)
-      const postId = await createNewPost(titleRef.current.value, auth.username, auth.token)
-      navigate(`/posts/edit/${postId}`)
+      const newPostUrl = await createNewPost(titleRef.current.value, auth.username, auth.token)
+      navigate(`/posts/edit/${newPostUrl}`)
     } catch (err) {
       setErrorMessage('Sorry, something went wrong. Your post hasn\'t been created.')
     } finally {

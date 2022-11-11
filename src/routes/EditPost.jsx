@@ -5,7 +5,7 @@ import {
   SuccessAlert,
   ErrorAlert
 } from '../components'
-import { getPost, updatePost } from '../utils'
+import { getEditablePost, updatePost } from '../utils'
 import { useAuth } from '../hooks'
 import { useQuery } from 'react-query'
 
@@ -49,7 +49,7 @@ const EditPost = () => {
   }
 
   const getPostWithId = async () => {
-    return await getPost(id)
+    return await getEditablePost(id, auth.token)
   }
 
   const { data, status } = useQuery(`editPostData${id}`, getPostWithId)
@@ -100,7 +100,7 @@ const EditPost = () => {
                     <div className="invalid-feedback"></div>
                   </div>
                   <div className="form-floating">
-                    <Form.Control ref={previewTextRef} onFocus={onFocus} name="subheading" type="text" placeholder="Subheading" style={{ fontSize: '20px' }} defaultValue={data.previewText}/>
+                    <Form.Control ref={previewTextRef} onFocus={onFocus} name="subheading" type="text" placeholder="Subheading" style={{ fontSize: '20px' }} defaultValue={data.subtitle}/>
                     <Form.Label htmlFor="subheading">Subheading</Form.Label>
                     <div className="invalid-feedback"></div>
                   </div>

@@ -17,7 +17,14 @@ const Archive = () => {
             </Col>
           </Row>
           {status === 'loading' && <HomeSpinner />}
-          {status === 'success' && organiseArchive(data).map((array) =>
+          {status === 'success' && data.length === 0 &&
+          <Row className="gx-4 gx-lg-5 justify-content-center">
+            <Col className="md-10 col-lg-8 col-xl-7 text-center">
+              <h2 className="mb-5">No posts to show</h2>
+            </Col>
+          </Row>
+        }
+          {status === 'success' && data.length > 0 && organiseArchive(data).map((array) =>
             <ArchiveMonthContainer key={array[0].yearAndMonthPublished} postArray={array} />
           )}
           {status === 'error' && <NetworkError />}

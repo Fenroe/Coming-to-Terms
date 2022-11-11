@@ -11,8 +11,8 @@ const Header = ({ backgroundImage, heading, subheading, metaAuthor, metaDate }) 
         <Col lg={8} xl={7} className="md-10">
           <div className="site-heading">
             <h1>{heading}</h1>
-            {subheading ? <span className="subheading">{subheading}</span> : null}
-            {metaAuthor && metaDate ? <span className="meta">Posted by <Link to={`/profile/${metaAuthor}`}>{metaAuthor}</Link> on {metaDate}</span> : null}
+            {subheading && <span className="subheading">{subheading}</span>}
+            {metaAuthor && metaDate && <span className="meta">Posted by <Link to={`/profile/${metaAuthor}`}>{metaAuthor}</Link> on {metaDate}</span>}
           </div>
         </Col>
       </Row>

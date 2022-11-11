@@ -131,22 +131,31 @@ const Signup = () => {
         localStorage.setItem('token', loginResponse.data.token)
         localStorage.setItem('username', loginResponse.data.profile.username)
         localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
+        localStorage.setItem('email', loginResponse.data.email)
         setAuth({
           token: loginResponse.data.token,
           username: loginResponse.data.profile.username,
-          isContributor: loginResponse.data.isContributor
+          isContributor: loginResponse.data.isContributor,
+          email: loginResponse.data.email
         })
         navigate('/')
       }
     } catch (err) {
       if (err.name === 'AxiosError') {
         if (err.response.status === 409) {
-          setErrorMessages((prevState) => ({
-            ...prevState,
-            username: 'This username is already in use'
-          }))
-        }
-        if (err.response.status >= 500) {
+          if (err.response.data === 'Username unavailable') {
+            setErrorMessages((prevState) => ({
+              ...prevState,
+              username: 'This username is already in use'
+            }))
+          }
+          if (err.response.data === 'Email unavailable') {
+            setErrorMessages((prevState) => ({
+              ...prevState,
+              email: 'This email is already in use'
+            }))
+          }
+        } else if (err.response.status >= 500) {
           setErrorMessages((prevState) => ({
             ...prevState,
             system: 'There was a problem on our end. Account wasn\'t created'

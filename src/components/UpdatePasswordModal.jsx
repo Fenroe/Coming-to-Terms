@@ -22,7 +22,7 @@ const UpdatePasswordModal = ({ showCondition, newPassword, closeModal, resolveUp
         return setErrorMessage('Please enter your password')
       }
       setLoading(true)
-      await updateUserSecurely(auth.username, passwordRef.current.value, newPassword, auth.token)
+      await updateUserSecurely(auth.email, passwordRef.current.value, newPassword, auth.token)
       resolveUpdatePassword()
     } catch {
       setErrorMessage('The password you entered was incorrect')
@@ -60,7 +60,6 @@ const UpdatePasswordModal = ({ showCondition, newPassword, closeModal, resolveUp
 
 UpdatePasswordModal.propTypes = {
   showCondition: PropTypes.bool,
-  newEmail: PropTypes.string,
   newPassword: PropTypes.string,
   closeModal: PropTypes.func,
   resolveUpdatePassword: PropTypes.func

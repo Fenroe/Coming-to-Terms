@@ -15,7 +15,7 @@ const ProfilePosts = ({
 
   const { data, status, refetch } = useQuery(
     `userposts${profileId}`,
-    username === auth.username ? getMyPosts() : getUserPosts(profileId)
+    username === auth.username ? () => getMyPosts(auth.token) : () => getUserPosts(profileId)
   )
 
   const [
@@ -55,21 +55,21 @@ const ProfilePosts = ({
       {status === 'success' &&
       <Col className="md-10" lg={8} xl={7}>
         <h1>Published</h1>
-        {data.articles.filter((article) => article.isPublished && article).length === 0 && <p>No published posts</p>}
-        {data.articles.filter((article) => article.isPublished && article).map((post) =>
+        {data.filter((article) => article.isPublished && article).length === 0 && <p>No published posts</p>}
+        {data.filter((article) => article.isPublished && article).map((post) =>
         <div className="profile-post-container" key={post._id}>
           <div className="post-link-wrapper">
-            <Link className="profile-post-link" to={`/posts/${post._id}`}>{post.title}</Link>
+            <Link className="profile-post-link" to={`/posts/${post.url}`}>{post.title}</Link>
           </div>
           {auth.username === username &&
           <Dropdown>
             <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as="div">
-                <Link to={`/posts/edit/${post._id}`}>Edit post</Link>
+                <Link to={`/posts/edit/${post.url}`}>Edit post</Link>
               </Dropdown.Item>
               <Dropdown.Item>
-                <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>
+                <button onClick={() => handleDeleteClick(post.url)} className="profile-post-dropdown-btn">Delete post</button>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -79,20 +79,20 @@ const ProfilePosts = ({
         {auth.username === username && (
               <div className="">
               <h1>Drafts</h1>
-              {data.articles.filter((article) => !article.isPublished && article).length === 0 && <p>No drafts</p>}
-              {data.articles.filter((article) => !article.isPublished && article).map((post) =>
+              {data.filter((article) => !article.isPublished && article).length === 0 && <p>No drafts</p>}
+              {data.filter((article) => !article.isPublished && article).map((post) =>
                 <div className="profile-post-container" key={post._id}>
                   <div className="post-link-wrapper">
-                    <Link to={`/posts/edit/${post._id}`}>{post.title}</Link>
+                    <Link to={`/posts/edit/${post.url}`}>{post.title}</Link>
                   </div>
                   <Dropdown>
                     <Dropdown.Toggle className="comment-options-btn"><ThreeDots /></Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item as="div">
-                        <Link to={`/posts/edit/${post._id}`}>Edit post</Link>
+                        <Link to={`/posts/edit/${post.url}`}>Edit post</Link>
                       </Dropdown.Item>
                       <Dropdown.Item>
-                        <button onClick={() => handleDeleteClick(post._id)} className="profile-post-dropdown-btn">Delete post</button>
+                        <button onClick={() => handleDeleteClick(post.url)} className="profile-post-dropdown-btn">Delete post</button>
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

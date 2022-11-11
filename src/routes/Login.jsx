@@ -28,10 +28,12 @@ const Login = () => {
       localStorage.setItem('token', loginResponse.data.token)
       localStorage.setItem('username', loginResponse.data.profile.username)
       localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
+      localStorage.setItem('email', loginResponse.data.email)
       setAuth({
         token: loginResponse.data.token,
         username: loginResponse.data.profile.username,
-        isContributor: loginResponse.data.isContributor
+        isContributor: loginResponse.data.isContributor,
+        email: loginResponse.data.email
       })
       navigate('/')
     } catch (err) {
@@ -39,7 +41,7 @@ const Login = () => {
         if (err.response.status >= 500) {
           setErrorMessage('There was a problem on our end. Our servers might be down.')
         } else {
-          setErrorMessage('Invalid username or password.')
+          setErrorMessage('Invalid email or password.')
         }
       }
     } finally {

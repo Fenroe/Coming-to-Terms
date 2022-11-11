@@ -24,8 +24,8 @@ const Post = () => {
         ? <Header
       backgroundImage={data.coverImage || headerImagePost}
       heading={data.title}
-      subheading={data.previewText}
-      metaAuthor={data.author.username}
+      subheading={data.subtitle}
+      metaAuthor={data.profile.username}
       metaDate={data.datePublishedFormatted}
       />
         : <HeaderAlt /> }

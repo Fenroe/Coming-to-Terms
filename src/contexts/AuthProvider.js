@@ -6,7 +6,8 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     token: '',
     username: '',
-    isContributor: null
+    isContributor: null,
+    email: ''
   })
 
   return (

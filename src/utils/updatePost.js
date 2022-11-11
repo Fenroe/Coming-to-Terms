@@ -1,7 +1,7 @@
 import { axios } from './index'
 
 const updatePost = async (postId, title, subtitle, content, coverImage, token) => {
-  const updatePostUrl = `${process.env.REACT_APP_API_URL}/posts/postinfo/${postId}`
+  const updatePostUrl = `${process.env.REACT_APP_API_URL}/articles/update/${postId}`
   const response = await axios.put(updatePostUrl, {
     title,
     subtitle,
