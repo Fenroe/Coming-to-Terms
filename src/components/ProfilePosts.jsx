@@ -56,7 +56,7 @@ const ProfilePosts = ({
       <Col className="md-10" lg={8} xl={7}>
         <h1>Published</h1>
         {data.filter((article) => article.isPublished && article).length === 0 && <p>No published posts</p>}
-        {data.filter((article) => article.isPublished && article).map((post) =>
+        {data.filter((article) => article.isPublished && article).sort((a, b) => new Date(b.dateUpdated) - new Date(a.dateUpdated)).map((post) =>
         <div className="profile-post-container" key={post._id}>
           <div className="post-link-wrapper">
             <Link className="profile-post-link" to={`/posts/${post.url}`}>{post.title}</Link>
@@ -80,7 +80,7 @@ const ProfilePosts = ({
               <div className="">
               <h1>Drafts</h1>
               {data.filter((article) => !article.isPublished && article).length === 0 && <p>No drafts</p>}
-              {data.filter((article) => !article.isPublished && article).map((post) =>
+              {data.filter((article) => !article.isPublished && article).sort((a, b) => new Date(b.dateUpdated) - new Date(a.dateUpdated)).map((post) =>
                 <div className="profile-post-container" key={post._id}>
                   <div className="post-link-wrapper">
                     <Link to={`/posts/edit/${post.url}`}>{post.title}</Link>

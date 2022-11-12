@@ -7,7 +7,7 @@ const ArchiveMonthContainer = ({ postArray }) => {
     <Row className="gx-4 gx-lg-5 justify-content-center">
       <Col className="md-10 col-lg-8 col-xl-7">
         <h1 className="mb-4">{postArray[0].yearAndMonthPublished}</h1>
-        {postArray.map((post) =>
+        {postArray.sort((a, b) => new Date(b.dateUpdated) - new Date(a.dateUpdated)).map((post) =>
         <div key={post._id} className="my-2">
           <PostCard
           id={post.url}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, PostCard } from './index'
 
 const RecentPostsContainer = ({ recentPosts }) => {
+  console.log(recentPosts)
   return (
     <Row className="gx-4 gx-lg-5 justify-content-center">
       <Col className="md-10 col-lg-8 col-xl-7">
@@ -11,7 +12,7 @@ const RecentPostsContainer = ({ recentPosts }) => {
           <h2 className="text-center">No posts to show.</h2>
             )
           : null}
-        {recentPosts.map((post) =>
+        {recentPosts.sort((a, b) => new Date(b.dateUpdated) - new Date(a.dateUpdated)).map((post) =>
         <PostCard
         key={post._id}
         id={post.url}
