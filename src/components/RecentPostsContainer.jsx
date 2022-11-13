@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Row, Col, PostCard } from './index'
 
 const RecentPostsContainer = ({ recentPosts }) => {
-  console.log(recentPosts)
   return (
     <Row className="gx-4 gx-lg-5 justify-content-center">
       <Col className="md-10 col-lg-8 col-xl-7">
