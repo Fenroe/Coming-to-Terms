@@ -53,7 +53,7 @@ const Login = () => {
     try {
       if (loading) return
       setLoading(true)
-      const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_USERNAME, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
+      const loginResponse = await handleLogin(process.env.REACT_APP_DEMO_ACCOUNT_EMAIL, process.env.REACT_APP_DEMO_ACCOUNT_PASSWORD)
       localStorage.setItem('token', loginResponse.data.token)
       localStorage.setItem('username', loginResponse.data.profile.username)
       localStorage.setItem('isContributor', JSON.stringify(loginResponse.data.isContributor))
